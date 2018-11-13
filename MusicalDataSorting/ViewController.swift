@@ -72,23 +72,23 @@ extension AVAudioFile {
 		let frameCount = AVAudioFrameCount(length)
 		let splitAudioBufferLength = Int(frameCount) / count + 1
 		
-		let basePcmBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: frameCount)!
+		let baseBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: frameCount)!
 		
 		do {
-			try read(into: basePcmBuffer, frameCount: frameCount)
+			try read(into: baseBuffer, frameCount: frameCount)
 		} catch {
 			print(error.localizedDescription)
 			return nil
 		}
 		
-		let channelCount = Int(basePcmBuffer.format.channelCount)
+		let channelCount = Int(baseBuffer.format.channelCount)
 		
 		var currentFrame = 0
 		var splitAudioBuffers: [AVAudioPCMBuffer] = []
 		var currentSplitAudioBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: AVAudioFrameCount(splitAudioBufferLength))!
-		for baseFrame in 0 ..< Int(basePcmBuffer.frameLength) {
+		for baseFrame in 0 ..< Int(baseBuffer.frameLength) {
 			for channelNumber in 0 ..< channelCount {
-				guard let sample = basePcmBuffer.floatChannelData?[channelNumber][baseFrame] else { continue }
+				guard let sample = baseBuffer.floatChannelData?[channelNumber][baseFrame] else { continue }
 				currentSplitAudioBuffer.floatChannelData![channelNumber][currentFrame] = sample
 			}
 			
