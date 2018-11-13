@@ -21,7 +21,7 @@ class ViewController: NSViewController {
 			do {
 				guard let filePath = self.filePath else { return }
 				let audioFile = try AVAudioFile(forReading: filePath)
-				guard let splitAudioFile = audioFile.splitIntoPieces(count: 2) else { return }
+				let splitAudioFile = try audioFile.splitIntoPieces(count: 2)
 				
 				let audioEngine = AVAudioEngine()
 				let audioPlayer = AVAudioPlayerNode()
@@ -67,19 +67,13 @@ class ViewController: NSViewController {
 }
 
 extension AVAudioFile {
-	func splitIntoPieces(count: Int) -> [AVAudioPCMBuffer]? {
-		
+	func splitIntoPieces(count: Int) throws -> [AVAudioPCMBuffer] {
 		let frameCount = AVAudioFrameCount(length)
 		let splitAudioBufferLength = Int(frameCount) / count + 1
 		
 		let baseBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: frameCount)!
 		
-		do {
-			try read(into: baseBuffer, frameCount: frameCount)
-		} catch {
-			print(error.localizedDescription)
-			return nil
-		}
+		try read(into: baseBuffer)
 		
 		let channelCount = Int(baseBuffer.format.channelCount)
 		
@@ -88,7 +82,7 @@ extension AVAudioFile {
 		var currentSplitAudioBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: AVAudioFrameCount(splitAudioBufferLength))!
 		for baseFrame in 0 ..< Int(baseBuffer.frameLength) {
 			for channelNumber in 0 ..< channelCount {
-				guard let sample = baseBuffer.floatChannelData?[channelNumber][baseFrame] else { continue }
+				let sample = baseBuffer.floatChannelData![channelNumber][baseFrame]
 				currentSplitAudioBuffer.floatChannelData![channelNumber][currentFrame] = sample
 			}
 			
