@@ -11,27 +11,8 @@
 		49BF48AC2189CD74000DF9FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF48AB2189CD74000DF9FB /* ViewController.swift */; };
 		49BF48AE2189CD76000DF9FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49BF48AD2189CD76000DF9FB /* Assets.xcassets */; };
 		49BF48B12189CD76000DF9FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BF48AF2189CD76000DF9FB /* Main.storyboard */; };
-		49BF48BD2189CD76000DF9FB /* MusicalDataSortingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF48BC2189CD76000DF9FB /* MusicalDataSortingTests.swift */; };
-		49BF48C82189CD76000DF9FB /* MusicalDataSortingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF48C72189CD76000DF9FB /* MusicalDataSortingUITests.swift */; };
 		49BF48D7218C76EC000DF9FB /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 49BF48D6218C7585000DF9FB /* sample.mp4 */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		49BF48B92189CD76000DF9FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 49BF489E2189CD74000DF9FB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 49BF48A52189CD74000DF9FB;
-			remoteInfo = MusicalDataSorting;
-		};
-		49BF48C42189CD76000DF9FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 49BF489E2189CD74000DF9FB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 49BF48A52189CD74000DF9FB;
-			remoteInfo = MusicalDataSorting;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		49BF48A62189CD74000DF9FB /* MusicalDataSorting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicalDataSorting.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,31 +22,11 @@
 		49BF48B02189CD76000DF9FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		49BF48B22189CD76000DF9FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49BF48B32189CD76000DF9FB /* MusicalDataSorting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MusicalDataSorting.entitlements; sourceTree = "<group>"; };
-		49BF48B82189CD76000DF9FB /* MusicalDataSortingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicalDataSortingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		49BF48BC2189CD76000DF9FB /* MusicalDataSortingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicalDataSortingTests.swift; sourceTree = "<group>"; };
-		49BF48BE2189CD76000DF9FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		49BF48C32189CD76000DF9FB /* MusicalDataSortingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicalDataSortingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		49BF48C72189CD76000DF9FB /* MusicalDataSortingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicalDataSortingUITests.swift; sourceTree = "<group>"; };
-		49BF48C92189CD76000DF9FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49BF48D6218C7585000DF9FB /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		49BF48A32189CD74000DF9FB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		49BF48B52189CD76000DF9FB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		49BF48C02189CD76000DF9FB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -79,8 +40,6 @@
 			isa = PBXGroup;
 			children = (
 				49BF48A82189CD74000DF9FB /* MusicalDataSorting */,
-				49BF48BB2189CD76000DF9FB /* MusicalDataSortingTests */,
-				49BF48C62189CD76000DF9FB /* MusicalDataSortingUITests */,
 				49BF48A72189CD74000DF9FB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,8 +48,6 @@
 			isa = PBXGroup;
 			children = (
 				49BF48A62189CD74000DF9FB /* MusicalDataSorting.app */,
-				49BF48B82189CD76000DF9FB /* MusicalDataSortingTests.xctest */,
-				49BF48C32189CD76000DF9FB /* MusicalDataSortingUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,24 +64,6 @@
 				49BF48D5218C7569000DF9FB /* Sounds */,
 			);
 			path = MusicalDataSorting;
-			sourceTree = "<group>";
-		};
-		49BF48BB2189CD76000DF9FB /* MusicalDataSortingTests */ = {
-			isa = PBXGroup;
-			children = (
-				49BF48BC2189CD76000DF9FB /* MusicalDataSortingTests.swift */,
-				49BF48BE2189CD76000DF9FB /* Info.plist */,
-			);
-			path = MusicalDataSortingTests;
-			sourceTree = "<group>";
-		};
-		49BF48C62189CD76000DF9FB /* MusicalDataSortingUITests */ = {
-			isa = PBXGroup;
-			children = (
-				49BF48C72189CD76000DF9FB /* MusicalDataSortingUITests.swift */,
-				49BF48C92189CD76000DF9FB /* Info.plist */,
-			);
-			path = MusicalDataSortingUITests;
 			sourceTree = "<group>";
 		};
 		49BF48D5218C7569000DF9FB /* Sounds */ = {
@@ -155,42 +94,6 @@
 			productReference = 49BF48A62189CD74000DF9FB /* MusicalDataSorting.app */;
 			productType = "com.apple.product-type.application";
 		};
-		49BF48B72189CD76000DF9FB /* MusicalDataSortingTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 49BF48CF2189CD76000DF9FB /* Build configuration list for PBXNativeTarget "MusicalDataSortingTests" */;
-			buildPhases = (
-				49BF48B42189CD76000DF9FB /* Sources */,
-				49BF48B52189CD76000DF9FB /* Frameworks */,
-				49BF48B62189CD76000DF9FB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				49BF48BA2189CD76000DF9FB /* PBXTargetDependency */,
-			);
-			name = MusicalDataSortingTests;
-			productName = MusicalDataSortingTests;
-			productReference = 49BF48B82189CD76000DF9FB /* MusicalDataSortingTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		49BF48C22189CD76000DF9FB /* MusicalDataSortingUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 49BF48D22189CD76000DF9FB /* Build configuration list for PBXNativeTarget "MusicalDataSortingUITests" */;
-			buildPhases = (
-				49BF48BF2189CD76000DF9FB /* Sources */,
-				49BF48C02189CD76000DF9FB /* Frameworks */,
-				49BF48C12189CD76000DF9FB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				49BF48C52189CD76000DF9FB /* PBXTargetDependency */,
-			);
-			name = MusicalDataSortingUITests;
-			productName = MusicalDataSortingUITests;
-			productReference = 49BF48C32189CD76000DF9FB /* MusicalDataSortingUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -203,14 +106,6 @@
 				TargetAttributes = {
 					49BF48A52189CD74000DF9FB = {
 						CreatedOnToolsVersion = 10.0;
-					};
-					49BF48B72189CD76000DF9FB = {
-						CreatedOnToolsVersion = 10.0;
-						TestTargetID = 49BF48A52189CD74000DF9FB;
-					};
-					49BF48C22189CD76000DF9FB = {
-						CreatedOnToolsVersion = 10.0;
-						TestTargetID = 49BF48A52189CD74000DF9FB;
 					};
 				};
 			};
@@ -228,8 +123,6 @@
 			projectRoot = "";
 			targets = (
 				49BF48A52189CD74000DF9FB /* MusicalDataSorting */,
-				49BF48B72189CD76000DF9FB /* MusicalDataSortingTests */,
-				49BF48C22189CD76000DF9FB /* MusicalDataSortingUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -245,20 +138,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		49BF48B62189CD76000DF9FB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		49BF48C12189CD76000DF9FB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -271,36 +150,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		49BF48B42189CD76000DF9FB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				49BF48BD2189CD76000DF9FB /* MusicalDataSortingTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		49BF48BF2189CD76000DF9FB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				49BF48C82189CD76000DF9FB /* MusicalDataSortingUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		49BF48BA2189CD76000DF9FB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 49BF48A52189CD74000DF9FB /* MusicalDataSorting */;
-			targetProxy = 49BF48B92189CD76000DF9FB /* PBXContainerItemProxy */;
-		};
-		49BF48C52189CD76000DF9FB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 49BF48A52189CD74000DF9FB /* MusicalDataSorting */;
-			targetProxy = 49BF48C42189CD76000DF9FB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		49BF48AF2189CD76000DF9FB /* Main.storyboard */ = {
@@ -465,84 +315,6 @@
 			};
 			name = Release;
 		};
-		49BF48D02189CD76000DF9FB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MusicalDataSortingTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Andrew.MusicalDataSortingTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MusicalDataSorting.app/Contents/MacOS/MusicalDataSorting";
-			};
-			name = Debug;
-		};
-		49BF48D12189CD76000DF9FB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MusicalDataSortingTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Andrew.MusicalDataSortingTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MusicalDataSorting.app/Contents/MacOS/MusicalDataSorting";
-			};
-			name = Release;
-		};
-		49BF48D32189CD76000DF9FB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MusicalDataSortingUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Andrew.MusicalDataSortingUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TEST_TARGET_NAME = MusicalDataSorting;
-			};
-			name = Debug;
-		};
-		49BF48D42189CD76000DF9FB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MusicalDataSortingUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Andrew.MusicalDataSortingUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TEST_TARGET_NAME = MusicalDataSorting;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -560,24 +332,6 @@
 			buildConfigurations = (
 				49BF48CD2189CD76000DF9FB /* Debug */,
 				49BF48CE2189CD76000DF9FB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		49BF48CF2189CD76000DF9FB /* Build configuration list for PBXNativeTarget "MusicalDataSortingTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				49BF48D02189CD76000DF9FB /* Debug */,
-				49BF48D12189CD76000DF9FB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		49BF48D22189CD76000DF9FB /* Build configuration list for PBXNativeTarget "MusicalDataSortingUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				49BF48D32189CD76000DF9FB /* Debug */,
-				49BF48D42189CD76000DF9FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
