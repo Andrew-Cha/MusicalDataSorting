@@ -13,6 +13,7 @@
 		49BF48B12189CD76000DF9FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BF48AF2189CD76000DF9FB /* Main.storyboard */; };
 		49BF48BD2189CD76000DF9FB /* MusicalDataSortingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF48BC2189CD76000DF9FB /* MusicalDataSortingTests.swift */; };
 		49BF48C82189CD76000DF9FB /* MusicalDataSortingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF48C72189CD76000DF9FB /* MusicalDataSortingUITests.swift */; };
+		49BF48D7218C76EC000DF9FB /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 49BF48D6218C7585000DF9FB /* sample.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		49BF48C32189CD76000DF9FB /* MusicalDataSortingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicalDataSortingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49BF48C72189CD76000DF9FB /* MusicalDataSortingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicalDataSortingUITests.swift; sourceTree = "<group>"; };
 		49BF48C92189CD76000DF9FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49BF48D6218C7585000DF9FB /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				49BF48AF2189CD76000DF9FB /* Main.storyboard */,
 				49BF48B22189CD76000DF9FB /* Info.plist */,
 				49BF48B32189CD76000DF9FB /* MusicalDataSorting.entitlements */,
+				49BF48D5218C7569000DF9FB /* Sounds */,
 			);
 			path = MusicalDataSorting;
 			sourceTree = "<group>";
@@ -122,6 +125,14 @@
 				49BF48C92189CD76000DF9FB /* Info.plist */,
 			);
 			path = MusicalDataSortingUITests;
+			sourceTree = "<group>";
+		};
+		49BF48D5218C7569000DF9FB /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				49BF48D6218C7585000DF9FB /* sample.mp4 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +239,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49BF48D7218C76EC000DF9FB /* sample.mp4 in Resources */,
 				49BF48AE2189CD76000DF9FB /* Assets.xcassets in Resources */,
 				49BF48B12189CD76000DF9FB /* Main.storyboard in Resources */,
 			);
