@@ -35,11 +35,9 @@ class ViewController: NSViewController {
 			
 			try audioEngine.start()
 			
-			audioPlayer.scheduleFile(audioFile, at: nil)
-			
-			//for audioPiece in pieces {
-			//	audioPlayer.scheduleBuffer(audioPiece)
-			//}
+			for audioPiece in pieces {
+				audioPlayer.scheduleBuffer(audioPiece)
+			}
 			
 			audioPlayer.play()
 			
@@ -77,6 +75,7 @@ extension AVAudioFile {
 		
 		return stride(from: 0, to: frameCount, by: splitFrameCount).map { startFrame -> AVAudioPCMBuffer in
 			let splitBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: .init(splitFrameCount))!
+			splitBuffer.frameLength = .init(splitFrameCount)
 			
 			let sourceFrames = startFrame..<min(startFrame + splitFrameCount, frameCount)
 			let targetFrames = stride(from: 0, to: splitFrameCount, by: sourceBuffer.stride)
