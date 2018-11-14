@@ -4,8 +4,9 @@ import AVFoundation
 class ViewController: NSViewController {
 	@IBOutlet weak var statusLabel: NSTextField!
 	@IBOutlet weak var uploadButton: NSButton!
-	var filePath: URL?
-	var audioPlayer: AVAudioPlayer!
+	
+	let audioEngine = AVAudioEngine()
+	let audioPlayer = AVAudioPlayerNode()
 	
 	@IBAction func startMusicPrompt(_ sender: NSButton) {
 		let fileSelectionPanel = NSOpenPanel()
@@ -16,48 +17,43 @@ class ViewController: NSViewController {
 		fileSelectionPanel.beginSheetModal(for: view.window!) { result in
 			guard result == .OK else { return }
 			
-			self.filePath = fileSelectionPanel.urls[0]
+			self.playFile(at: fileSelectionPanel.urls[0])
+		}
+	}
+	
+	func playFile(at url: URL) {
+		do {
+			let audioFile = try AVAudioFile(forReading: url)
+			let pieces = try audioFile.splitIntoPieces(count: 2)
 			
-			do {
-				guard let filePath = self.filePath else { return }
-				let audioFile = try AVAudioFile(forReading: filePath)
-				let splitAudioFile = try audioFile.splitIntoPieces(count: 2)
-				
-				let audioEngine = AVAudioEngine()
-				let audioPlayer = AVAudioPlayerNode()
-				let mainMixer = audioEngine.mainMixerNode
-				let audioFormat = audioFile.processingFormat
-				audioEngine.attach(audioPlayer)
-				audioEngine.connect(audioPlayer, to: mainMixer, format: audioFormat)
-				
-				try audioEngine.start()
-				
-				for audioPiece in splitAudioFile {
-					audioPlayer.scheduleBuffer(audioPiece)
-					audioPlayer.play()
-				}
-				
-				print(splitAudioFile.count)
-				self.audioPlayer = try AVAudioPlayer(contentsOf: filePath)
-				self.audioPlayer.prepareToPlay()
-				self.audioPlayer.play()
-				
-				self.statusLabel.stringValue = "Status - Successful"
-			} catch {
-				self.statusLabel.stringValue = "Status - Failed, try again"
-				print(error.localizedDescription)
-				
-				let description = """
-				Your computer is about to blow up!
-				
-				\(error.localizedDescription)
-				
-				This is most likely due to the file not being an audio file.
-				"""
-				
-				let newError = NSError(domain: "" , code: 0, userInfo: [NSLocalizedDescriptionKey: description])
-				NSAlert(error: newError).runModal()
-			}
+			audioEngine.attach(audioPlayer)
+			audioEngine.connect(audioPlayer, to: audioEngine.mainMixerNode, format: nil)
+			
+			try audioEngine.start()
+			
+			audioPlayer.scheduleFile(audioFile, at: nil)
+			
+			//for audioPiece in pieces {
+			//	audioPlayer.scheduleBuffer(audioPiece)
+			//}
+			
+			audioPlayer.play()
+			
+			statusLabel.stringValue = "Status - Successful"
+		} catch {
+			statusLabel.stringValue = "Status - Failed, try again"
+			print(error.localizedDescription)
+			
+			let description = """
+			Your computer is about to blow up!
+			
+			\(error.localizedDescription)
+			
+			This is most likely due to the file not being an audio file.
+			"""
+			
+			let newError = NSError(domain: "" , code: 0, userInfo: [NSLocalizedDescriptionKey: description])
+			NSAlert(error: newError).runModal()
 		}
 	}
 	
