@@ -21,13 +21,17 @@ class ViewController: NSViewController {
 		}
 	}
 	
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		
+		audioEngine.attach(audioPlayer)
+		audioEngine.connect(audioPlayer, to: audioEngine.mainMixerNode, format: nil)
+	}
+	
 	func playFile(at url: URL) {
 		do {
 			let audioFile = try AVAudioFile(forReading: url)
 			let pieces = try audioFile.splitIntoPieces(count: 2)
-			
-			audioEngine.attach(audioPlayer)
-			audioEngine.connect(audioPlayer, to: audioEngine.mainMixerNode, format: nil)
 			
 			try audioEngine.start()
 			
@@ -42,23 +46,23 @@ class ViewController: NSViewController {
 			statusLabel.stringValue = "Status - Successful"
 		} catch {
 			statusLabel.stringValue = "Status - Failed, try again"
-			print(error.localizedDescription)
-			
-			let description = """
-			Your computer is about to blow up!
-			
-			\(error.localizedDescription)
-			
-			This is most likely due to the file not being an audio file.
-			"""
-			
-			let newError = NSError(domain: "" , code: 0, userInfo: [NSLocalizedDescriptionKey: description])
-			NSAlert(error: newError).runModal()
+			showAlert(for: error)
 		}
 	}
 	
-	override func viewDidLoad() {
-		// Do any additional setup after loading the view.
+	func showAlert(for error: Error) {
+		print(error.localizedDescription)
+		
+		let description = """
+		Your computer is about to blow up!
+		
+		\(error.localizedDescription)
+		
+		This is most likely due to the file not being an audio file.
+		"""
+		
+		let newError = NSError(domain: "" , code: 0, userInfo: [NSLocalizedDescriptionKey: description])
+		NSAlert(error: newError).runModal()
 	}
 }
 
