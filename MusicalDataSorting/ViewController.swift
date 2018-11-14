@@ -31,7 +31,7 @@ class ViewController: NSViewController {
 	func playFile(at url: URL) {
 		do {
 			let audioFile = try AVAudioFile(forReading: url)
-			let pieces = try audioFile.splitIntoPieces(count: 2)
+			let pieces = try audioFile.splitIntoPieces(count: 8)
 			
 			try audioEngine.start()
 			
@@ -65,9 +65,10 @@ class ViewController: NSViewController {
 }
 
 extension AVAudioFile {
-	func splitIntoPieces(count: Int) throws -> [AVAudioPCMBuffer] {
+	func splitIntoPieces(count pieceCount: Int) throws -> [AVAudioPCMBuffer] {
 		let frameCount = Int(length)
-		let splitFrameCount = frameCount / count + 1
+		let splitFrameCount = frameCount / pieceCount
+		// Rounding down above technically makes us lose up to `pieceCount` frames, but it makes the logic much simpler and isn't really noticeable because typically there's _a lot_ more frames than pieces.
 		
 		let sourceBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: .init(frameCount))!
 		try read(into: sourceBuffer)
@@ -77,13 +78,15 @@ extension AVAudioFile {
 			let splitBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: .init(splitFrameCount))!
 			splitBuffer.frameLength = .init(splitFrameCount)
 			
-			let sourceFrames = startFrame..<min(startFrame + splitFrameCount, frameCount)
-			let targetFrames = stride(from: 0, to: splitFrameCount, by: sourceBuffer.stride)
-			
-			for channel in 0..<channelCount {
-				for (sourceFrame, targetFrame) in zip(sourceFrames, targetFrames) {
-					let sample = sourceBuffer.floatChannelData![channel][sourceFrame]
-					splitBuffer.floatChannelData![channel][targetFrame] = sample
+			if sourceBuffer.format.isInterleaved { // interleaved format
+				let sourceData = sourceBuffer.floatChannelData![0]
+				let targetData = splitBuffer.floatChannelData![0]
+				targetData.initialize(from: sourceData.advanced(by: startFrame * channelCount), count: splitFrameCount * channelCount)
+			} else { // have to copy each channel separately
+				for channel in 0..<channelCount {
+					let sourceData = sourceBuffer.floatChannelData![channel]
+					let targetData = splitBuffer.floatChannelData![channel]
+					targetData.initialize(from: sourceData.advanced(by: startFrame), count: splitFrameCount)
 				}
 			}
 			
