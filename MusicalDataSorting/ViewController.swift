@@ -68,32 +68,27 @@ class ViewController: NSViewController {
 
 extension AVAudioFile {
 	func splitIntoPieces(count: Int) throws -> [AVAudioPCMBuffer] {
-		let frameCount = AVAudioFrameCount(length)
-		let splitAudioBufferLength = Int(frameCount) / count + 1
+		let frameCount = Int(length)
+		let splitFrameCount = frameCount / count + 1
 		
-		let baseBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: frameCount)!
+		let sourceBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: .init(frameCount))!
+		try read(into: sourceBuffer)
+		let channelCount = Int(sourceBuffer.format.channelCount)
 		
-		try read(into: baseBuffer)
-		
-		let channelCount = Int(baseBuffer.format.channelCount)
-		
-		var currentFrame = 0
-		var splitAudioBuffers: [AVAudioPCMBuffer] = []
-		var currentSplitAudioBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: AVAudioFrameCount(splitAudioBufferLength))!
-		for baseFrame in 0 ..< Int(baseBuffer.frameLength) {
-			for channelNumber in 0 ..< channelCount {
-				let sample = baseBuffer.floatChannelData![channelNumber][baseFrame]
-				currentSplitAudioBuffer.floatChannelData![channelNumber][currentFrame] = sample
+		return stride(from: 0, to: frameCount, by: splitFrameCount).map { startFrame -> AVAudioPCMBuffer in
+			let splitBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: .init(splitFrameCount))!
+			
+			let sourceFrames = startFrame..<min(startFrame + splitFrameCount, frameCount)
+			let targetFrames = stride(from: 0, to: splitFrameCount, by: sourceBuffer.stride)
+			
+			for channel in 0..<channelCount {
+				for (sourceFrame, targetFrame) in zip(sourceFrames, targetFrames) {
+					let sample = sourceBuffer.floatChannelData![channel][sourceFrame]
+					splitBuffer.floatChannelData![channel][targetFrame] = sample
+				}
 			}
 			
-			currentFrame += 1
-			if currentFrame == splitAudioBufferLength {
-				currentFrame = 0
-				splitAudioBuffers.append(currentSplitAudioBuffer)
-				currentSplitAudioBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: AVAudioFrameCount(splitAudioBufferLength))!
-			}
+			return splitBuffer
 		}
-		
-		return splitAudioBuffers
 	}
 }
