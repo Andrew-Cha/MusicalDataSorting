@@ -1,5 +1,6 @@
 import Cocoa
 import AVFoundation
+typealias IndexAndBuffer = (index: Int, buffer: AVAudioPCMBuffer)
 
 class ViewController: NSViewController {
 	@IBOutlet weak var statusLabel: NSTextField!
@@ -17,7 +18,13 @@ class ViewController: NSViewController {
 		fileSelectionPanel.beginSheetModal(for: view.window!) { result in
 			guard result == .OK else { return }
 			
-			self.playFile(at: fileSelectionPanel.urls[0])
+			do {
+				try playFile(at: fileSelectionPanel.urls[0], with: self.audioEngine, self.audioPlayer)
+				self.statusLabel.stringValue = "Status - Successful"
+			} catch {
+				self.statusLabel.stringValue = "Status - Failed, try again"
+				self.showAlert(for: error)
+			}
 		}
 	}
 	
@@ -28,26 +35,6 @@ class ViewController: NSViewController {
 		audioEngine.connect(audioPlayer, to: audioEngine.mainMixerNode, format: nil)
 	}
 	
-	func playFile(at url: URL) {
-		do {
-			let audioFile = try AVAudioFile(forReading: url)
-			let pieces = try audioFile.splitIntoPieces(count: 8)
-			
-			try audioEngine.start()
-			
-			for audioPiece in pieces {
-				audioPlayer.scheduleBuffer(audioPiece)
-			}
-			
-			audioPlayer.play()
-			
-			statusLabel.stringValue = "Status - Successful"
-		} catch {
-			statusLabel.stringValue = "Status - Failed, try again"
-			showAlert(for: error)
-		}
-	}
-	
 	func showAlert(for error: Error) {
 		print(error.localizedDescription)
 		
@@ -56,41 +43,10 @@ class ViewController: NSViewController {
 		
 		\(error.localizedDescription)
 		
-		This is most likely due to the file not being an audio file.
+		This is most likely due to the file not being an audio file or having no data.
 		"""
 		
 		let newError = NSError(domain: "" , code: 0, userInfo: [NSLocalizedDescriptionKey: description])
 		NSAlert(error: newError).runModal()
-	}
-}
-
-extension AVAudioFile {
-	func splitIntoPieces(count pieceCount: Int) throws -> [AVAudioPCMBuffer] {
-		let frameCount = Int(length)
-		let splitFrameCount = frameCount / pieceCount
-		// Rounding down above technically makes us lose up to `pieceCount` frames, but it makes the logic much simpler and isn't really noticeable because typically there's _a lot_ more frames than pieces.
-		
-		let sourceBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: .init(frameCount))!
-		try read(into: sourceBuffer)
-		let channelCount = Int(sourceBuffer.format.channelCount)
-		
-		return stride(from: 0, to: frameCount, by: splitFrameCount).map { startFrame -> AVAudioPCMBuffer in
-			let splitBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: .init(splitFrameCount))!
-			splitBuffer.frameLength = .init(splitFrameCount)
-			
-			if sourceBuffer.format.isInterleaved { // interleaved format
-				let sourceData = sourceBuffer.floatChannelData![0]
-				let targetData = splitBuffer.floatChannelData![0]
-				targetData.initialize(from: sourceData.advanced(by: startFrame * channelCount), count: splitFrameCount * channelCount)
-			} else { // have to copy each channel separately
-				for channel in 0..<channelCount {
-					let sourceData = sourceBuffer.floatChannelData![channel]
-					let targetData = splitBuffer.floatChannelData![channel]
-					targetData.initialize(from: sourceData.advanced(by: startFrame), count: splitFrameCount)
-				}
-			}
-			
-			return splitBuffer
-		}
 	}
 }
