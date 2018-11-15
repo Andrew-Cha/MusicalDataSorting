@@ -1,6 +1,5 @@
 import Cocoa
 import AVFoundation
-typealias IndexAndBuffer = (index: Int, buffer: AVAudioPCMBuffer)
 
 class ViewController: NSViewController {
 	@IBOutlet weak var statusLabel: NSTextField!
