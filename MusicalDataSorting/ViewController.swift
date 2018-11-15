@@ -18,7 +18,7 @@ class ViewController: NSViewController {
 			guard result == .OK else { return }
 			
 			do {
-				try playFile(at: fileSelectionPanel.urls[0], with: self.audioEngine, self.audioPlayer)
+				try playFile(at: fileSelectionPanel.urls[0], with: self.audioPlayer)
 				self.statusLabel.stringValue = "Status - Successful"
 			} catch {
 				self.statusLabel.stringValue = "Status - Failed, try again"
@@ -32,6 +32,12 @@ class ViewController: NSViewController {
 		
 		audioEngine.attach(audioPlayer)
 		audioEngine.connect(audioPlayer, to: audioEngine.mainMixerNode, format: nil)
+		do {
+			try audioEngine.start()
+		} catch {
+			self.statusLabel.stringValue = "Status - Failed, try again"
+			self.showAlert(for: error)
+		}
 	}
 	
 	func showAlert(for error: Error) {
