@@ -678,7 +678,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="75" y="-28"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -689,9 +689,7 @@
                         <rect key="contentRect" x="514" y="381" width="550" height="370"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="550" height="370"/>
-                        <value key="maxSize" type="size" width="550" height="370"/>
                         <value key="minFullScreenContentSize" type="size" width="550" height="370"/>
-                        <value key="maxFullScreenContentSize" type="size" width="550" height="370"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -709,14 +707,24 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="MusicalDataSorting" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="550" height="370"/>
+                        <rect key="frame" x="0.0" y="0.0" width="734" height="486"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="OJZ-J8-Z7g">
-                                <rect key="frame" x="189" y="100" width="172" height="172"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mMc-oa-ZHg">
+                                <rect key="frame" x="98" y="452" width="106" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="172" id="I2e-FP-HPa"/>
-                                    <constraint firstAttribute="width" constant="172" id="Nzx-Kp-Kfs"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="102" id="fDt-FM-ayw"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Not Uploaded" id="e5X-G3-02g">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="OJZ-J8-Z7g">
+                                <rect key="frame" x="100" y="379" width="90" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="I2e-FP-HPa"/>
                                 </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSActionTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="9DE-kt-Fgu">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -726,64 +734,14 @@
                                     <action selector="startMusicPrompt:" target="XfG-lQ-9wD" id="2y5-8t-Xqg"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mMc-oa-ZHg">
-                                <rect key="frame" x="139" y="299" width="272" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="268" id="fDt-FM-ayw"/>
-                                </constraints>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Status - Not Uploaded" id="e5X-G3-02g">
-                                    <font key="font" metaFont="system" size="26"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pGm-F0-gDn">
-                                <rect key="frame" x="431" y="157" width="71" height="58"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="58" id="3Hl-DN-rP1"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="67" id="okO-8s-auE"/>
-                                </constraints>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="&lt;--" id="ozK-lp-cji">
-                                    <font key="font" metaFont="system" size="42"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xcZ-Mu-Vra">
-                                <rect key="frame" x="48" y="157" width="70" height="58"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="--&gt;" id="8bO-SN-VbS">
-                                    <font key="font" metaFont="system" size="42"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Hn-7e-Kft">
-                                <rect key="frame" x="178" y="36" width="195" height="22"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Click to start uploading" id="59Y-dD-42J">
-                                    <font key="font" metaFont="system" size="18"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="OJZ-J8-Z7g" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" constant="-1" id="0lv-5n-X6B"/>
-                            <constraint firstItem="xcZ-Mu-Vra" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="50" id="31z-yQ-cFk"/>
-                            <constraint firstItem="pGm-F0-gDn" firstAttribute="baseline" secondItem="xcZ-Mu-Vra" secondAttribute="baseline" id="3jx-Tk-Vr8"/>
-                            <constraint firstItem="mMc-oa-ZHg" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="7vj-00-7Jn"/>
-                            <constraint firstItem="3Hn-7e-Kft" firstAttribute="top" secondItem="OJZ-J8-Z7g" secondAttribute="bottom" constant="42" id="Bwh-UT-9mE"/>
-                            <constraint firstAttribute="trailing" secondItem="pGm-F0-gDn" secondAttribute="trailing" constant="50" id="CfP-6K-DlF"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3Hn-7e-Kft" secondAttribute="trailing" constant="20" symbolic="YES" id="KmV-GT-2bt"/>
-                            <constraint firstItem="3Hn-7e-Kft" firstAttribute="firstBaseline" relation="lessThanOrEqual" secondItem="OJZ-J8-Z7g" secondAttribute="baseline" constant="63" id="LJs-gk-ghv"/>
-                            <constraint firstItem="3Hn-7e-Kft" firstAttribute="leading" secondItem="OJZ-J8-Z7g" secondAttribute="trailing" constant="-181" id="LKE-BG-T0y"/>
-                            <constraint firstItem="mMc-oa-ZHg" firstAttribute="centerX" secondItem="OJZ-J8-Z7g" secondAttribute="centerX" id="Xgw-1U-YCI"/>
-                            <constraint firstItem="mMc-oa-ZHg" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="40" id="acL-NJ-jDR"/>
-                            <constraint firstItem="pGm-F0-gDn" firstAttribute="firstBaseline" secondItem="xcZ-Mu-Vra" secondAttribute="firstBaseline" id="bwk-cU-vS8"/>
-                            <constraint firstItem="pGm-F0-gDn" firstAttribute="leading" relation="lessThanOrEqual" secondItem="OJZ-J8-Z7g" secondAttribute="trailing" constant="100" id="dds-M0-lVx"/>
-                            <constraint firstItem="pGm-F0-gDn" firstAttribute="centerY" secondItem="OJZ-J8-Z7g" secondAttribute="centerY" id="eWR-J6-x1c"/>
-                            <constraint firstItem="OJZ-J8-Z7g" firstAttribute="leading" relation="lessThanOrEqual" secondItem="xcZ-Mu-Vra" secondAttribute="trailing" constant="100" id="lYb-ZC-dmO"/>
-                            <constraint firstItem="OJZ-J8-Z7g" firstAttribute="top" relation="greaterThanOrEqual" secondItem="mMc-oa-ZHg" secondAttribute="bottom" constant="8" id="o3c-zl-I6S"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OJZ-J8-Z7g" secondAttribute="bottom" constant="100" id="sDF-tD-zL7"/>
+                            <constraint firstItem="OJZ-J8-Z7g" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" constant="-160" id="0lv-5n-X6B"/>
+                            <constraint firstItem="OJZ-J8-Z7g" firstAttribute="leading" secondItem="mMc-oa-ZHg" secondAttribute="leading" id="MUe-bM-yvi"/>
+                            <constraint firstItem="mMc-oa-ZHg" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="15" id="NqX-Xa-J7U"/>
+                            <constraint firstItem="mMc-oa-ZHg" firstAttribute="centerX" secondItem="OJZ-J8-Z7g" secondAttribute="centerX" constant="6" id="Xgw-1U-YCI"/>
+                            <constraint firstItem="mMc-oa-ZHg" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="100" id="Y25-rM-Djp"/>
+                            <constraint firstItem="OJZ-J8-Z7g" firstAttribute="top" secondItem="mMc-oa-ZHg" secondAttribute="bottom" constant="25" id="o3c-zl-I6S"/>
                         </constraints>
                     </view>
                     <connections>
