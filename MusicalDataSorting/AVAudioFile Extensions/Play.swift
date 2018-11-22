@@ -9,7 +9,6 @@
 import AVFoundation
 
 func playFile(at url: URL, with audioPlayerNode: AVAudioPlayerNode) throws {
-	do {
 		let audioFile = try AVAudioFile(forReading: url)
 		let pieces = try audioFile.splitIntoPieces(count: 125000)
 		let piecesEnumerated: [(index: Int, buffer: AVAudioPCMBuffer)] = pieces.enumerated().map { $0 }
@@ -34,5 +33,4 @@ func playFile(at url: URL, with audioPlayerNode: AVAudioPlayerNode) throws {
 		}
 		
 		audioPlayerNode.play()
-	}
 }

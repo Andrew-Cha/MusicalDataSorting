@@ -710,19 +710,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="734" height="486"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mMc-oa-ZHg">
-                                <rect key="frame" x="98" y="452" width="106" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="102" id="fDt-FM-ayw"/>
-                                </constraints>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Not Uploaded" id="e5X-G3-02g">
-                                    <font key="font" metaFont="system" size="15"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="OJZ-J8-Z7g">
-                                <rect key="frame" x="100" y="379" width="90" height="48"/>
+                                <rect key="frame" x="50" y="379" width="102" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="I2e-FP-HPa"/>
                                 </constraints>
@@ -734,14 +723,31 @@
                                     <action selector="startMusicPrompt:" target="XfG-lQ-9wD" id="2y5-8t-Xqg"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mMc-oa-ZHg">
+                                <rect key="frame" x="48" y="452" width="106" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="102" id="fDt-FM-ayw"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Not Uploaded" id="e5X-G3-02g">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="7sw-Yl-mSp" customClass="GraphView" customModule="MusicalDataSorting" customModuleProvider="target">
+                                <rect key="frame" x="4" y="4" width="726" height="355"/>
+                            </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="OJZ-J8-Z7g" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" constant="-160" id="0lv-5n-X6B"/>
+                            <constraint firstItem="7sw-Yl-mSp" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="4" id="0XN-CG-ZQq"/>
+                            <constraint firstItem="7sw-Yl-mSp" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="4PE-df-puE"/>
+                            <constraint firstItem="mMc-oa-ZHg" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="50" id="88s-8d-IHi"/>
                             <constraint firstItem="OJZ-J8-Z7g" firstAttribute="leading" secondItem="mMc-oa-ZHg" secondAttribute="leading" id="MUe-bM-yvi"/>
                             <constraint firstItem="mMc-oa-ZHg" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="15" id="NqX-Xa-J7U"/>
-                            <constraint firstItem="mMc-oa-ZHg" firstAttribute="centerX" secondItem="OJZ-J8-Z7g" secondAttribute="centerX" constant="6" id="Xgw-1U-YCI"/>
-                            <constraint firstItem="mMc-oa-ZHg" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="100" id="Y25-rM-Djp"/>
+                            <constraint firstAttribute="bottom" secondItem="7sw-Yl-mSp" secondAttribute="bottom" constant="4" id="OTF-mi-fU8"/>
+                            <constraint firstItem="mMc-oa-ZHg" firstAttribute="centerX" secondItem="OJZ-J8-Z7g" secondAttribute="centerX" id="Xgw-1U-YCI"/>
                             <constraint firstItem="OJZ-J8-Z7g" firstAttribute="top" secondItem="mMc-oa-ZHg" secondAttribute="bottom" constant="25" id="o3c-zl-I6S"/>
+                            <constraint firstItem="7sw-Yl-mSp" firstAttribute="top" secondItem="OJZ-J8-Z7g" secondAttribute="bottom" constant="20" id="zfP-mf-FF2"/>
                         </constraints>
                     </view>
                     <connections>

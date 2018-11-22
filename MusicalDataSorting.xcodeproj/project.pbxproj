@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4931E8DC21A69159006A7B55 /* SelectionSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931E8DB21A69159006A7B55 /* SelectionSort.swift */; };
 		4931E8DE21A6B8D7006A7B55 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931E8DD21A6B8D7006A7B55 /* Timer.swift */; };
+		4931E8E021A75518006A7B55 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931E8DF21A75518006A7B55 /* GraphView.swift */; };
 		49454398219D636E005800C9 /* SortingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49454397219D636E005800C9 /* SortingProtocol.swift */; };
 		4945439B219D692C005800C9 /* Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945439A219D692C005800C9 /* Split.swift */; };
 		4945439D219D6AA6005800C9 /* Play.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945439C219D6AA6005800C9 /* Play.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		4931E8DB21A69159006A7B55 /* SelectionSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSort.swift; sourceTree = "<group>"; };
 		4931E8DD21A6B8D7006A7B55 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		4931E8DF21A75518006A7B55 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		49454397219D636E005800C9 /* SortingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingProtocol.swift; sourceTree = "<group>"; };
 		4945439A219D692C005800C9 /* Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Split.swift; sourceTree = "<group>"; };
 		4945439C219D6AA6005800C9 /* Play.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Play.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				49454399219D6908005800C9 /* AVAudioFile Extensions */,
 				49454396219D5F30005800C9 /* Sorting Algorithms  */,
 				49BF48A92189CD74000DF9FB /* AppDelegate.swift */,
+				4931E8DF21A75518006A7B55 /* GraphView.swift */,
 				49BF48AB2189CD74000DF9FB /* ViewController.swift */,
 				49BF48AD2189CD76000DF9FB /* Assets.xcassets */,
 				49BF48AF2189CD76000DF9FB /* Main.storyboard */,
@@ -181,6 +184,7 @@
 			files = (
 				49BF48AC2189CD74000DF9FB /* ViewController.swift in Sources */,
 				49454398219D636E005800C9 /* SortingProtocol.swift in Sources */,
+				4931E8E021A75518006A7B55 /* GraphView.swift in Sources */,
 				4931E8DC21A69159006A7B55 /* SelectionSort.swift in Sources */,
 				4945439B219D692C005800C9 /* Split.swift in Sources */,
 				49BF48AA2189CD74000DF9FB /* AppDelegate.swift in Sources */,
