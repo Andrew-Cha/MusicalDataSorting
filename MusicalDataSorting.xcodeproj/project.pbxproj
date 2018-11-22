@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		49454398219D636E005800C9 /* Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49454397219D636E005800C9 /* Sorting.swift */; };
+		4931E8DC21A69159006A7B55 /* SelectionSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931E8DB21A69159006A7B55 /* SelectionSort.swift */; };
+		4931E8DE21A6B8D7006A7B55 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931E8DD21A6B8D7006A7B55 /* Timer.swift */; };
+		49454398219D636E005800C9 /* SortingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49454397219D636E005800C9 /* SortingProtocol.swift */; };
 		4945439B219D692C005800C9 /* Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945439A219D692C005800C9 /* Split.swift */; };
 		4945439D219D6AA6005800C9 /* Play.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945439C219D6AA6005800C9 /* Play.swift */; };
+		4945439F219D887D005800C9 /* BubbleSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945439E219D887D005800C9 /* BubbleSort.swift */; };
 		49BF48AA2189CD74000DF9FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF48A92189CD74000DF9FB /* AppDelegate.swift */; };
 		49BF48AC2189CD74000DF9FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF48AB2189CD74000DF9FB /* ViewController.swift */; };
 		49BF48AE2189CD76000DF9FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49BF48AD2189CD76000DF9FB /* Assets.xcassets */; };
@@ -18,9 +21,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		49454397219D636E005800C9 /* Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sorting.swift; sourceTree = "<group>"; };
+		4931E8DB21A69159006A7B55 /* SelectionSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSort.swift; sourceTree = "<group>"; };
+		4931E8DD21A6B8D7006A7B55 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		49454397219D636E005800C9 /* SortingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingProtocol.swift; sourceTree = "<group>"; };
 		4945439A219D692C005800C9 /* Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Split.swift; sourceTree = "<group>"; };
 		4945439C219D6AA6005800C9 /* Play.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Play.swift; sourceTree = "<group>"; };
+		4945439E219D887D005800C9 /* BubbleSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSort.swift; sourceTree = "<group>"; };
 		49BF48A62189CD74000DF9FB /* MusicalDataSorting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicalDataSorting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49BF48A92189CD74000DF9FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49BF48AB2189CD74000DF9FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,7 +51,9 @@
 		49454396219D5F30005800C9 /* Sorting Algorithms  */ = {
 			isa = PBXGroup;
 			children = (
-				49454397219D636E005800C9 /* Sorting.swift */,
+				49454397219D636E005800C9 /* SortingProtocol.swift */,
+				4945439E219D887D005800C9 /* BubbleSort.swift */,
+				4931E8DB21A69159006A7B55 /* SelectionSort.swift */,
 			);
 			path = "Sorting Algorithms ";
 			sourceTree = "<group>";
@@ -87,6 +95,7 @@
 				49BF48B22189CD76000DF9FB /* Info.plist */,
 				49BF48B32189CD76000DF9FB /* MusicalDataSorting.entitlements */,
 				49BF48D5218C7569000DF9FB /* Sounds */,
+				4931E8DD21A6B8D7006A7B55 /* Timer.swift */,
 			);
 			path = MusicalDataSorting;
 			sourceTree = "<group>";
@@ -171,10 +180,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				49BF48AC2189CD74000DF9FB /* ViewController.swift in Sources */,
-				49454398219D636E005800C9 /* Sorting.swift in Sources */,
+				49454398219D636E005800C9 /* SortingProtocol.swift in Sources */,
+				4931E8DC21A69159006A7B55 /* SelectionSort.swift in Sources */,
 				4945439B219D692C005800C9 /* Split.swift in Sources */,
 				49BF48AA2189CD74000DF9FB /* AppDelegate.swift in Sources */,
 				4945439D219D6AA6005800C9 /* Play.swift in Sources */,
+				4945439F219D887D005800C9 /* BubbleSort.swift in Sources */,
+				4931E8DE21A6B8D7006A7B55 /* Timer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

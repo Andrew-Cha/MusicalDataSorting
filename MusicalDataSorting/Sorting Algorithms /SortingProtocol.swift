@@ -8,8 +8,7 @@
 
 import Foundation
 
-enum Sorting {
-	static func bubbleSort() {
-		print("Sort Wbhaaa")
-	}
+protocol SortingAlgorithm {
+	var array: [IndexAndBuffer] { get set }
+	func step()
 }
