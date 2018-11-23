@@ -12,7 +12,7 @@ import Cocoa
 class GraphView: NSView {
 	override func awakeFromNib() {
 		self.wantsLayer = true
-		self.layer?.backgroundColor = NSColor.gray.cgColor
-		self.layer?.cornerRadius = 10
+		self.layer!.backgroundColor = NSColor.gray.cgColor
+		self.layer!.cornerRadius = 10
 	}
 }
