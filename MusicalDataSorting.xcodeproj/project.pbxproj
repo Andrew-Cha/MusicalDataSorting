@@ -18,7 +18,6 @@
 		49BF48AC2189CD74000DF9FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF48AB2189CD74000DF9FB /* ViewController.swift */; };
 		49BF48AE2189CD76000DF9FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49BF48AD2189CD76000DF9FB /* Assets.xcassets */; };
 		49BF48B12189CD76000DF9FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BF48AF2189CD76000DF9FB /* Main.storyboard */; };
-		49BF48D7218C76EC000DF9FB /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 49BF48D6218C7585000DF9FB /* sample.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +35,6 @@
 		49BF48B02189CD76000DF9FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		49BF48B22189CD76000DF9FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49BF48B32189CD76000DF9FB /* MusicalDataSorting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MusicalDataSorting.entitlements; sourceTree = "<group>"; };
-		49BF48D6218C7585000DF9FB /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,23 +90,14 @@
 				49454396219D5F30005800C9 /* Sorting Algorithms  */,
 				49BF48A92189CD74000DF9FB /* AppDelegate.swift */,
 				4931E8DF21A75518006A7B55 /* GraphView.swift */,
+				4931E8DD21A6B8D7006A7B55 /* Timer.swift */,
 				49BF48AB2189CD74000DF9FB /* ViewController.swift */,
 				49BF48AD2189CD76000DF9FB /* Assets.xcassets */,
 				49BF48AF2189CD76000DF9FB /* Main.storyboard */,
 				49BF48B22189CD76000DF9FB /* Info.plist */,
 				49BF48B32189CD76000DF9FB /* MusicalDataSorting.entitlements */,
-				49BF48D5218C7569000DF9FB /* Sounds */,
-				4931E8DD21A6B8D7006A7B55 /* Timer.swift */,
 			);
 			path = MusicalDataSorting;
-			sourceTree = "<group>";
-		};
-		49BF48D5218C7569000DF9FB /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				49BF48D6218C7585000DF9FB /* sample.mp4 */,
-			);
-			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,7 +158,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49BF48D7218C76EC000DF9FB /* sample.mp4 in Resources */,
 				49BF48AE2189CD76000DF9FB /* Assets.xcassets in Resources */,
 				49BF48B12189CD76000DF9FB /* Main.storyboard in Resources */,
 			);
