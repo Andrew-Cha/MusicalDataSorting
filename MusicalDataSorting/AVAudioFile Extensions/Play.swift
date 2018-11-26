@@ -8,12 +8,8 @@
 
 import AVFoundation
 
-func playFile(at url: URL, with audioPlayerNode: AVAudioPlayerNode) throws {
-		let audioFile = try AVAudioFile(forReading: url)
-		let pieces = try audioFile.splitIntoPieces(count: 10000)
-		let piecesEnumerated: [(index: Int, buffer: AVAudioPCMBuffer)] = pieces.enumerated().map { $0 }
-	
-		for audioPiece in pieces {
+func playFile(with audioPlayerNode: AVAudioPlayerNode, pieces: [IndexAndBuffer]) throws {
+	for (_, audioPiece) in pieces {
 			audioPlayerNode.scheduleBuffer(audioPiece)
 		}
 		

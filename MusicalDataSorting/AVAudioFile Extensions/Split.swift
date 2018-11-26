@@ -18,7 +18,8 @@ extension AVAudioFile {
 		try read(into: sourceBuffer)
 		let channelCount = Int(sourceBuffer.format.channelCount)
 		
-		return stride(from: 0, to: frameCount, by: splitFrameCount).map { startFrame -> AVAudioPCMBuffer in
+		return stride(from: 0, to: splitFrameCount * pieceCount, by: splitFrameCount).map { startFrame -> AVAudioPCMBuffer in
+			//splitFrameCount * pieceCount is used to match exactly how many pieces we will have, to not get an out of bounds error later at data writing
 			let splitBuffer = AVAudioPCMBuffer(pcmFormat: processingFormat, frameCapacity: .init(splitFrameCount))!
 			splitBuffer.frameLength = .init(splitFrameCount)
 			

@@ -127,7 +127,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <action selector="splitNumberEntered:" target="XfG-lQ-9wD" id="0hA-4y-I4f"/>
+                                    <action selector="pieceCountEntered:" target="XfG-lQ-9wD" id="j5u-pP-5oC"/>
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c9h-oo-BQH">
@@ -193,10 +193,11 @@
                     </view>
                     <connections>
                         <outlet property="algorithmPopUpButton" destination="YWT-y9-15f" id="ok8-fa-NV3"/>
+                        <outlet property="graphView" destination="7sw-Yl-mSp" id="5j9-8J-2tv"/>
+                        <outlet property="pieceCountField" destination="uY1-lF-u1t" id="zd6-MI-G5a"/>
                         <outlet property="playButton" destination="c9h-oo-BQH" id="SQc-L2-o5d"/>
                         <outlet property="shuffleButton" destination="F5d-Xn-idC" id="tov-n4-Pbl"/>
                         <outlet property="sortButton" destination="hWh-Kb-1Fo" id="wQp-c0-dnm"/>
-                        <outlet property="splitCountField" destination="uY1-lF-u1t" id="Lnt-Qb-tLI"/>
                         <outlet property="statusLabel" destination="mMc-oa-ZHg" id="ef6-3X-lM3"/>
                         <outlet property="uploadButton" destination="OJZ-J8-Z7g" id="nj4-1N-yhE"/>
                     </connections>

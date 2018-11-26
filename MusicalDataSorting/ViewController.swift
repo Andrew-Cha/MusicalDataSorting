@@ -3,18 +3,22 @@ import AVFoundation
 
 class ViewController: NSViewController {
 	let algorithmNames = ["Pick an Algorithm", "Bubble Sort", "Selection Sort", "This does nothing! Yeah!"]
-	@IBOutlet weak var statusLabel: NSTextField!
+	@IBOutlet weak var graphView: GraphView!
+	
 	@IBOutlet weak var uploadButton: NSButton!
-	@IBOutlet weak var algorithmPopUpButton: NSPopUpButton!
 	@IBOutlet weak var playButton: NSButton!
 	@IBOutlet weak var sortButton: NSButton!
-	@IBOutlet weak var splitCountField: NSTextField!
 	@IBOutlet weak var shuffleButton: NSButton!
 	
-	var filePath: URL?
+	@IBOutlet weak var algorithmPopUpButton: NSPopUpButton!
+	@IBOutlet weak var pieceCountField: NSTextField!
+	@IBOutlet weak var statusLabel: NSTextField!
+	
 	let audioEngine = AVAudioEngine()
 	let audioPlayer = AVAudioPlayerNode()
 	
+	var pieces: [IndexAndBuffer]!
+	var pieceCount = 100
 	
 	@IBAction func algorithmPopUpSelected(_ sender: NSPopUpButton) {
 		let lastSelectedIndex = sender.indexOfSelectedItem
@@ -23,13 +27,25 @@ class ViewController: NSViewController {
 		sortButton.isEnabled = true
 	}
 	
+	@IBAction func pieceCountEntered(_ sender: NSTextField) {
+		if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: sender.stringValue)) {
+			let numbers = Int(sender.stringValue)!
+			if 100 <= numbers && numbers <= 25000 {
+				pieceCountField.stringValue = String(numbers)
+			} else {
+				pieceCountField.stringValue = "100"
+			}
+		} else {
+			pieceCountField.stringValue = "100"
+		}
+	}
+	
 	@IBAction func playFilePrompt(_ sender: Any) {
 		do {
-			guard self.filePath != nil else { return }
 			if audioPlayer.isPlaying {
 				audioPlayer.stop()
 			}
-			try playFile(at: filePath!, with: audioPlayer)
+			try playFile(with: audioPlayer, pieces: pieces)
 			self.statusLabel.stringValue = "Status - Played"
 		} catch {
 			self.statusLabel.stringValue = "Status - Playing Failed, try again"
@@ -38,13 +54,8 @@ class ViewController: NSViewController {
 	}
 	
 	@IBAction func shufflePrompt(_ sender: Any) {
-		print("Prompted to shuffle")
+		pieces.shuffle()
 		algorithmPopUpButton.isEnabled = true
-	}
-	
-	@IBAction func splitNumberEntered(_ sender: Any) {
-		print("Value for split count entered")
-		shuffleButton.isEnabled = true
 	}
 	
 	@IBAction func sortFilePrompt(_ sender: Any) {
@@ -62,10 +73,13 @@ class ViewController: NSViewController {
 			guard result == .OK else { return }
 			
 			do {
-				let _ = try AVAudioFile(forReading: fileSelectionPanel.urls[0])
-				self.filePath = fileSelectionPanel.urls[0]
+				let audioFile = try AVAudioFile(forReading: fileSelectionPanel.urls[0])
+				let piecesSplit = try audioFile.splitIntoPieces(count: self.pieceCount)
+				self.pieces = piecesSplit.enumerated().map { $0 }
+				self.pieceCountField.stringValue = String(self.pieceCount)
 				self.playButton.isEnabled = true
-				self.splitCountField.isEnabled = true
+				self.pieceCountField.isEnabled = true
+				self.shuffleButton.isEnabled = true
 				
 				self.statusLabel.stringValue = "Status - Uploaded"
 			} catch {
@@ -77,6 +91,7 @@ class ViewController: NSViewController {
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
+		self.graphView.viewController = self
 		algorithmPopUpButton.removeAllItems()
 		algorithmPopUpButton.addItems(withTitles: algorithmNames)
 		
