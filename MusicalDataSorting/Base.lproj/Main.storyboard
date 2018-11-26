@@ -100,7 +100,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="JYU-Wz-aUf"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="bevel" title="Pick an Algorithm" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="border" inset="2" pullsDown="YES" selectedItem="VZR-TZ-oKJ" id="yjL-Yh-nt8">
+                                <popUpButtonCell key="cell" type="bevel" title="Pick an Algorithm" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" pullsDown="YES" selectedItem="VZR-TZ-oKJ" id="yjL-Yh-nt8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" size="15" name=".AppleSystemUIFont"/>
                                     <menu key="menu" id="okQ-gh-OXC">
@@ -121,7 +121,7 @@
                                     <constraint firstAttribute="width" constant="115" id="6Bp-CW-cwb"/>
                                     <constraint firstAttribute="height" constant="40" id="NPQ-E1-jKq"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="cUe-b5-9KD">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="cUe-b5-9KD">
                                     <font key="font" metaFont="system" size="26"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -132,7 +132,7 @@
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c9h-oo-BQH">
                                 <rect key="frame" x="170" y="355" width="66" height="32"/>
-                                <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ST8-nJ-UKz">
+                                <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ST8-nJ-UKz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -142,7 +142,7 @@
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hWh-Kb-1Fo">
                                 <rect key="frame" x="387" y="355" width="66" height="32"/>
-                                <buttonCell key="cell" type="push" title="Sort" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8gf-9M-PDM">
+                                <buttonCell key="cell" type="push" title="Sort" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8gf-9M-PDM">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -152,7 +152,7 @@
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F5d-Xn-idC">
                                 <rect key="frame" x="626" y="355" width="84" height="32"/>
-                                <buttonCell key="cell" type="push" title="Shuffle" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Za4-Kb-r0f">
+                                <buttonCell key="cell" type="push" title="Shuffle" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Za4-Kb-r0f">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>

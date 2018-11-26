@@ -9,15 +9,31 @@
 import Cocoa
 
 class GraphView: NSView {
-	var viewController: ViewController?
+	var viewController: ViewController!
 	
 	override func awakeFromNib() {
 		self.wantsLayer = true
 		self.layer!.backgroundColor = NSColor.gray.cgColor
 		self.layer!.cornerRadius = 10
+		super.awakeFromNib()
 	}
 	
 	override func draw(_ dirtyRect: NSRect) {
+		guard let pieces = viewController?.pieces else { return }
+		super.draw(dirtyRect)
+		let context = NSGraphicsContext.current?.cgContext
 		
+		needsDisplay = true
+		let pieceCount = CGFloat(pieces.count)
+		let width = frame.width / pieceCount
+		var x: CGFloat = 0
+		
+		for (index, _) in pieces {
+			let coefficient = CGFloat(index + 1) / pieceCount
+			let height = coefficient * frame.height
+			let rect = NSRect(x: x, y: 0, width: width, height: height)
+			context?.fill(rect)
+			x += width
+		}
 	}
 }

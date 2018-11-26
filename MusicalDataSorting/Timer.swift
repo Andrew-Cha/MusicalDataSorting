@@ -8,8 +8,8 @@
 
 import Foundation
 
-class ParkBenchTimer {
-	
+class BenchmarkTimer {
+
 	let startTime: CFAbsoluteTime
 	var endTime: CFAbsoluteTime?
 	

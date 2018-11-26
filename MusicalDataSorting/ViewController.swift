@@ -5,18 +5,19 @@ class ViewController: NSViewController {
 	let algorithmNames = ["Pick an Algorithm", "Bubble Sort", "Selection Sort", "This does nothing! Yeah!"]
 	@IBOutlet weak var graphView: GraphView!
 	
-	@IBOutlet weak var uploadButton: NSButton!
+	@IBOutlet weak var algorithmPopUpButton: NSPopUpButton!
 	@IBOutlet weak var playButton: NSButton!
 	@IBOutlet weak var sortButton: NSButton!
 	@IBOutlet weak var shuffleButton: NSButton!
+	@IBOutlet weak var uploadButton: NSButton!
 	
-	@IBOutlet weak var algorithmPopUpButton: NSPopUpButton!
 	@IBOutlet weak var pieceCountField: NSTextField!
 	@IBOutlet weak var statusLabel: NSTextField!
 	
 	let audioEngine = AVAudioEngine()
 	let audioPlayer = AVAudioPlayerNode()
 	
+	var filePath: URL!
 	var pieces: [IndexAndBuffer]!
 	var pieceCount = 100
 	
@@ -32,6 +33,16 @@ class ViewController: NSViewController {
 			let numbers = Int(sender.stringValue)!
 			if 100 <= numbers && numbers <= 25000 {
 				pieceCountField.stringValue = String(numbers)
+				pieceCount = numbers
+				do {
+					let audioFile = try AVAudioFile(forReading: filePath)
+					let piecesSplit = try audioFile.splitIntoPieces(count: self.pieceCount)
+					self.pieces = piecesSplit.enumerated().map { $0 }
+					graphView.draw(graphView.frame)
+				} catch {
+					self.statusLabel.stringValue = "Status - Shuffling Failed"
+					self.showAlert(for: error)
+				}
 			} else {
 				pieceCountField.stringValue = "100"
 			}
@@ -42,6 +53,7 @@ class ViewController: NSViewController {
 	
 	@IBAction func playFilePrompt(_ sender: Any) {
 		do {
+			self.graphView.draw(self.graphView.frame)
 			if audioPlayer.isPlaying {
 				audioPlayer.stop()
 			}
@@ -55,6 +67,7 @@ class ViewController: NSViewController {
 	
 	@IBAction func shufflePrompt(_ sender: Any) {
 		pieces.shuffle()
+		graphView.draw(graphView.frame)
 		algorithmPopUpButton.isEnabled = true
 	}
 	
@@ -73,15 +86,18 @@ class ViewController: NSViewController {
 			guard result == .OK else { return }
 			
 			do {
-				let audioFile = try AVAudioFile(forReading: fileSelectionPanel.urls[0])
+				self.filePath = fileSelectionPanel.urls[0]
+				let audioFile = try AVAudioFile(forReading: self.filePath)
 				let piecesSplit = try audioFile.splitIntoPieces(count: self.pieceCount)
 				self.pieces = piecesSplit.enumerated().map { $0 }
 				self.pieceCountField.stringValue = String(self.pieceCount)
 				self.playButton.isEnabled = true
 				self.pieceCountField.isEnabled = true
 				self.shuffleButton.isEnabled = true
+				self.graphView.draw(self.graphView.frame)
 				
 				self.statusLabel.stringValue = "Status - Uploaded"
+				
 			} catch {
 				self.statusLabel.stringValue = "Status - Upload Failed, try again"
 				self.showAlert(for: error)
@@ -92,16 +108,25 @@ class ViewController: NSViewController {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		self.graphView.viewController = self
+		prepareForUploading()
+	}
+	
+	func prepareForUploading() {
+		playButton.isEnabled = false
+		algorithmPopUpButton.isEnabled = false
 		algorithmPopUpButton.removeAllItems()
 		algorithmPopUpButton.addItems(withTitles: algorithmNames)
+		sortButton.isEnabled = false
+		pieceCountField.isEnabled = false
+		shuffleButton.isEnabled = false
 		
 		audioEngine.attach(audioPlayer)
 		audioEngine.connect(audioPlayer, to: audioEngine.mainMixerNode, format: nil)
 		do {
 			try audioEngine.start()
 		} catch {
-			self.statusLabel.stringValue = "Status - Failed, try again"
-			self.showAlert(for: error)
+			statusLabel.stringValue = "Status - Failed to launch the audio engine"
+			showAlert(for: error)
 		}
 	}
 	

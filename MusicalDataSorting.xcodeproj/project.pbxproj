@@ -86,13 +86,13 @@
 		49BF48A82189CD74000DF9FB /* MusicalDataSorting */ = {
 			isa = PBXGroup;
 			children = (
+				49BF48AD2189CD76000DF9FB /* Assets.xcassets */,
 				49454399219D6908005800C9 /* AVAudioFile Extensions */,
 				49454396219D5F30005800C9 /* Sorting Algorithms  */,
 				49BF48A92189CD74000DF9FB /* AppDelegate.swift */,
 				4931E8DF21A75518006A7B55 /* GraphView.swift */,
 				4931E8DD21A6B8D7006A7B55 /* Timer.swift */,
 				49BF48AB2189CD74000DF9FB /* ViewController.swift */,
-				49BF48AD2189CD76000DF9FB /* Assets.xcassets */,
 				49BF48AF2189CD76000DF9FB /* Main.storyboard */,
 				49BF48B22189CD76000DF9FB /* Info.plist */,
 				49BF48B32189CD76000DF9FB /* MusicalDataSorting.entitlements */,
