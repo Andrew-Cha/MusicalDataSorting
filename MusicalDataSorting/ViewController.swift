@@ -17,6 +17,7 @@ class ViewController: NSViewController {
 	let audioEngine = AVAudioEngine()
 	let audioPlayer = AVAudioPlayerNode()
 	
+	var selectedAlgorithm: String!
 	var filePath: URL!
 	var pieces: [IndexAndBuffer]!
 	var pieceCount = 100
@@ -25,6 +26,7 @@ class ViewController: NSViewController {
 		let lastSelectedIndex = sender.indexOfSelectedItem
 		let lastSelectedItem = sender.item(at: lastSelectedIndex)
 		algorithmPopUpButton.setTitle(lastSelectedItem!.title)
+		selectedAlgorithm = lastSelectedItem!.title
 		sortButton.isEnabled = true
 	}
 	
@@ -72,8 +74,36 @@ class ViewController: NSViewController {
 	}
 	
 	@IBAction func sortFilePrompt(_ sender: Any) {
-		print("Prompted to sort the file")
 		sortButton.isEnabled = false
+		var sorter: SortingAlgorithm?
+		
+		switch selectedAlgorithm {
+		case "Bubble Sort":
+			sorter = BubbleSort(sorting: pieces)
+			break;
+			
+		case "Selection Sort":
+			sorter = SelectionSort(sorting: pieces)
+			break;
+			
+		default:
+			break;
+		}
+		
+		guard sorter != nil else { return }
+		var timer: Timer?
+		var currentDelay = 0.0
+		var piecesQueuedUp = 0
+		while piecesQueuedUp < pieces.count * pieces.count {
+			currentDelay += 0.06
+			piecesQueuedUp += 1
+			timer = Timer.scheduledTimer(withTimeInterval: 0.06, repeats: false) { (timer) in
+				sorter!.step()
+				self.pieces = sorter!.array
+				self.graphView.draw(self.graphView.frame)
+			}
+		}
+		timer = nil
 	}
 	
 	@IBAction func startFileUploadPrompt(_ sender: NSButton) {

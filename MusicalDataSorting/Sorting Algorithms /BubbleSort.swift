@@ -32,6 +32,7 @@ final class BubbleSort: SortingAlgorithm {
 			
 			if i == array.count {
 				isDone = true
+				print(array)
 			}
 		}
 	}
