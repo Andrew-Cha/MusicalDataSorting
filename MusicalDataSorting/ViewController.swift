@@ -18,9 +18,11 @@ class ViewController: NSViewController {
 	let audioPlayer = AVAudioPlayerNode()
 	
 	var filePath: URL!
-		var selectedAlgorithm: String!
-	var pieceCount = 100
-	
+	var selectedAlgorithm: String!
+	let minimumPieceCount = 10
+	let maximumPieceCount = 25000
+	let defaultPieceCount = 10
+	var pieceCount = 0
 	
 	var colors = PieceColors()
 	var pieces: [IndexAndBuffer]! {
@@ -38,9 +40,13 @@ class ViewController: NSViewController {
 	}
 	
 	@IBAction func pieceCountEntered(_ sender: NSTextField) {
+		var invalidInput = true
+		
 		if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: sender.stringValue)) {
 			let numbers = Int(sender.stringValue)!
-			if 100 <= numbers && numbers <= 25000 {
+			if minimumPieceCount <= numbers && numbers <= maximumPieceCount {
+				invalidInput = false
+				
 				pieceCountField.stringValue = String(numbers)
 				pieceCount = numbers
 				do {
@@ -52,11 +58,11 @@ class ViewController: NSViewController {
 					self.statusLabel.stringValue = "Status - Shuffling Failed"
 					self.showAlert(for: error)
 				}
-			} else {
-				pieceCountField.stringValue = "100"
 			}
-		} else {
-			pieceCountField.stringValue = "100"
+		}
+		
+		if invalidInput {
+			pieceCountField.stringValue = String(defaultPieceCount)
 		}
 	}
 	
@@ -81,7 +87,10 @@ class ViewController: NSViewController {
 	}
 	
 	@IBAction func sortFilePrompt(_ sender: Any) {
+		algorithmPopUpButton.isEnabled = false
+		shuffleButton.isEnabled = false
 		sortButton.isEnabled = false
+		
 		var sorter: SortingAlgorithm?
 		
 		switch selectedAlgorithm {
@@ -96,13 +105,14 @@ class ViewController: NSViewController {
 		}
 		
 		guard sorter != nil else { return }
-		let _ = Timer.scheduledTimer(withTimeInterval: 0.0001, repeats: true) { timer in
+		let _ = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true) { timer in
 			sorter!.step()
 			self.graphView.needsDisplay = true
 			self.pieces = sorter!.array
 			self.colors = sorter!.colors
 			if sorter!.isDone {
 				timer.invalidate()
+				shuffleButton.isEnabled = true
 			}
 		}
 	}
@@ -119,9 +129,9 @@ class ViewController: NSViewController {
 			do {
 				self.filePath = fileSelectionPanel.urls[0]
 				let audioFile = try AVAudioFile(forReading: self.filePath)
-				let piecesSplit = try audioFile.splitIntoPieces(count: self.pieceCount)
+				let piecesSplit = try audioFile.splitIntoPieces(count: self.defaultPieceCount)
 				self.pieces = piecesSplit.enumerated().map { $0 }
-				self.pieceCountField.stringValue = String(self.pieceCount)
+				self.pieceCountField.stringValue = String(self.defaultPieceCount)
 				self.playButton.isEnabled = true
 				self.pieceCountField.isEnabled = true
 				self.shuffleButton.isEnabled = true

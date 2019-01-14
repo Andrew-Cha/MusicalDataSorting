@@ -41,7 +41,7 @@ final class BubbleSort: SortingAlgorithm {
 			
 			if i == array.count {
 				isDone = true
-				colors.comparingTo = []
+				colors = PieceColors()
 			}
 		}
 	}

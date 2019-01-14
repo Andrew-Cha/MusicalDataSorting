@@ -43,7 +43,7 @@ final class SelectionSort: SortingAlgorithm {
 			
 			if j == array.count {
 				isDone = true
-				colors.comparingTo = []
+				colors = PieceColors()
 			}
 		} else {
 			j += 1
