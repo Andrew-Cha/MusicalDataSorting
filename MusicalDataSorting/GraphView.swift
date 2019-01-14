@@ -20,10 +20,11 @@ class GraphView: NSView {
 	
 	override func draw(_ dirtyRect: NSRect) {
 		guard let pieces = viewController?.pieces else { return }
+		let colors = viewController?.colors
+		
 		super.draw(dirtyRect)
 		let context = NSGraphicsContext.current?.cgContext
 		
-		needsDisplay = true
 		let pieceCount = CGFloat(pieces.count)
 		let width = frame.width / pieceCount
 		var x: CGFloat = 0
@@ -32,7 +33,21 @@ class GraphView: NSView {
 			let coefficient = CGFloat(index + 1) / pieceCount
 			let height = coefficient * frame.height
 			let rect = NSRect(x: x, y: 0, width: width, height: height)
+			
+			if let comparingFrom = colors?.comparingFrom {
+				if comparingFrom.contains(index) {
+					NSColor.red.setFill()
+				}
+			}
+			
+			if let comparingTo = colors?.comparingTo {
+				if comparingTo.contains(index) {
+					NSColor.green.setFill()
+				}
+			}
 			context?.fill(rect)
+			
+			NSColor.black.setFill()
 			x += width
 		}
 	}

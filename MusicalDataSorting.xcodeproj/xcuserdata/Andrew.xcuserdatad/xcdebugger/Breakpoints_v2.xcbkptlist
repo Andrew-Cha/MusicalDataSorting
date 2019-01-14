@@ -40,76 +40,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MusicalDataSorting/GraphView.swift"
-            timestampString = "564997653.930926"
+            timestampString = "569143973.208802"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "draw(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicalDataSorting/ViewController.swift"
-            timestampString = "565000478.624192"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "sortFilePrompt(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MusicalDataSorting.ViewController.sortFilePrompt(Any) -&gt; ()"
-                  moduleName = "MusicalDataSorting"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Andrew/Documents/GitHub/MusicalDataSorting/MusicalDataSorting/ViewController.swift"
-                  timestampString = "565000200.410185"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "100"
-                  endingLineNumber = "100"
-                  offsetFromSymbolStart = "612">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.NSTimer) -&gt; () in MusicalDataSorting.ViewController.sortFilePrompt(Any) -&gt; ()"
-                  moduleName = "MusicalDataSorting"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Andrew/Documents/GitHub/MusicalDataSorting/MusicalDataSorting/ViewController.swift"
-                  timestampString = "565000200.411953"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "23">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicalDataSorting/ViewController.swift"
-            timestampString = "565000478.6246361"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "sortFilePrompt(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

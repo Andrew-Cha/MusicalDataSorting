@@ -17,10 +17,17 @@ class ViewController: NSViewController {
 	let audioEngine = AVAudioEngine()
 	let audioPlayer = AVAudioPlayerNode()
 	
-	var selectedAlgorithm: String!
 	var filePath: URL!
-	var pieces: [IndexAndBuffer]!
+		var selectedAlgorithm: String!
 	var pieceCount = 100
+	
+	
+	var colors = PieceColors()
+	var pieces: [IndexAndBuffer]! {
+		didSet { graphView.setNeedsDisplay(graphView.bounds) }
+	}
+	
+	
 	
 	@IBAction func algorithmPopUpSelected(_ sender: NSPopUpButton) {
 		let lastSelectedIndex = sender.indexOfSelectedItem
@@ -80,30 +87,24 @@ class ViewController: NSViewController {
 		switch selectedAlgorithm {
 		case "Bubble Sort":
 			sorter = BubbleSort(sorting: pieces)
-			break;
 			
 		case "Selection Sort":
 			sorter = SelectionSort(sorting: pieces)
-			break;
 			
 		default:
 			break;
 		}
 		
 		guard sorter != nil else { return }
-		var timer: Timer?
-		var currentDelay = 0.0
-		var piecesQueuedUp = 0
-		while piecesQueuedUp < pieces.count * pieces.count {
-			currentDelay += 0.06
-			piecesQueuedUp += 1
-			timer = Timer.scheduledTimer(withTimeInterval: 0.06, repeats: false) { (timer) in
-				sorter!.step()
-				self.pieces = sorter!.array
-				self.graphView.draw(self.graphView.frame)
+		let _ = Timer.scheduledTimer(withTimeInterval: 0.0001, repeats: true) { timer in
+			sorter!.step()
+			self.graphView.needsDisplay = true
+			self.pieces = sorter!.array
+			self.colors = sorter!.colors
+			if sorter!.isDone {
+				timer.invalidate()
 			}
 		}
-		timer = nil
 	}
 	
 	@IBAction func startFileUploadPrompt(_ sender: NSButton) {
@@ -124,7 +125,7 @@ class ViewController: NSViewController {
 				self.playButton.isEnabled = true
 				self.pieceCountField.isEnabled = true
 				self.shuffleButton.isEnabled = true
-				self.graphView.draw(self.graphView.frame)
+				self.graphView.needsDisplay = true
 				
 				self.statusLabel.stringValue = "Status - Uploaded"
 				
@@ -174,4 +175,9 @@ class ViewController: NSViewController {
 		let newError = NSError(domain: "" , code: 0, userInfo: [NSLocalizedDescriptionKey: description])
 		NSAlert(error: newError).runModal()
 	}
+}
+
+struct PieceColors {
+	var comparingTo: [Int] = []
+	var comparingFrom: [Int] = []
 }
