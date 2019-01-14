@@ -88,8 +88,10 @@ class ViewController: NSViewController {
 	
 	@IBAction func sortFilePrompt(_ sender: Any) {
 		algorithmPopUpButton.isEnabled = false
+		pieceCountField.isEnabled = false
 		shuffleButton.isEnabled = false
 		sortButton.isEnabled = false
+		uploadButton.isEnabled = false
 		
 		var sorter: SortingAlgorithm?
 		
@@ -112,7 +114,9 @@ class ViewController: NSViewController {
 			self.colors = sorter!.colors
 			if sorter!.isDone {
 				timer.invalidate()
-				shuffleButton.isEnabled = true
+				self.pieceCountField.isEnabled = true
+				self.shuffleButton.isEnabled = true
+				self.uploadButton.isEnabled = true
 			}
 		}
 	}
@@ -136,6 +140,8 @@ class ViewController: NSViewController {
 				self.pieceCountField.isEnabled = true
 				self.shuffleButton.isEnabled = true
 				self.graphView.needsDisplay = true
+				self.sortButton.isEnabled = false
+				self.algorithmPopUpButton.isEnabled = false
 				
 				self.statusLabel.stringValue = "Status - Uploaded"
 				
