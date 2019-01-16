@@ -36,17 +36,14 @@ class GraphView: NSView {
 			if let color = audioFragment.color {
 				if color == NSColor.red {
 					NSColor.red.setFill()
-					print("Color red")
 				} else if color == NSColor.green {
 					NSColor.green.setFill()
-					print("Color green")
 				}
 				context?.fill(rect)
 				NSColor.black.setFill()
 				
 				viewController.audioFile.pieces[index].color = nil
 			} else {
-				print("Color black")
 				context?.fill(rect)
 			}
 			
