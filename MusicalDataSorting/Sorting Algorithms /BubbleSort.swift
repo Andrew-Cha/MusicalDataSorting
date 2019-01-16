@@ -6,42 +6,38 @@
 //  Copyright © 2018 Andrew. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 final class BubbleSort: SortingAlgorithm {
-	var array: [IndexAndBuffer]
-	var colors: PieceColors
+	var audioFile: AudioFile
 	
 	var i = 0
 	var j = 0
 	var isDone = false
 	
-	init(sorting array: [IndexAndBuffer]) {
-		self.array = array
-		self.colors = PieceColors()
+	init(sorting audioFile: AudioFile) {
+		self.audioFile = audioFile
 	}
 	
 	func step() {
 		assert(!isDone)
 		
-		colors.comparingTo = []
-		colors.comparingFrom = []
-		
-		if array[j].index > array[j + 1].index {
-			array.swapAt(j, j + 1)
-			colors.comparingFrom = [array[j].index, array[j + 1].index]
+		if audioFile.pieces[j].index > audioFile.pieces[j + 1].index {
+			audioFile.pieces[j].color = NSColor.red
+			audioFile.pieces[j + 1].color = NSColor.red
+			audioFile.pieces.swapAt(j, j + 1)
 		} else {
-			colors.comparingTo = [array[j].index]
+			audioFile.pieces[j].color = NSColor.green
 		}
 		
 		j += 1
-		if j >= array.count - 1 - i {
+		if j >= audioFile.pieces.count - 1 - i {
 			i += 1
 			j = 0
 			
-			if i == array.count {
+			if i == audioFile.pieces.count {
 				isDone = true
-				colors = PieceColors()
+				audioFile.pieces[j].color = nil
 			}
 		}
 	}

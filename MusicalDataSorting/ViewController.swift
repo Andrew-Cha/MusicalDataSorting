@@ -2,7 +2,7 @@ import Cocoa
 import AVFoundation
 
 class ViewController: NSViewController {
-	let algorithmNames = ["Pick an Algorithm", "Bubble Sort", "Selection Sort", "This does nothing! Yeah!"]
+	let algorithmNames = ["Pick an Algorithm", "Bubble Sort", "Selection Sort"]
 	@IBOutlet weak var graphView: GraphView!
 	
 	@IBOutlet weak var algorithmPopUpButton: NSPopUpButton!
@@ -24,12 +24,7 @@ class ViewController: NSViewController {
 	let defaultPieceCount = 10
 	var pieceCount = 0
 	
-	var colors = PieceColors()
-	var pieces: [IndexAndBuffer]! {
-		didSet { graphView.setNeedsDisplay(graphView.bounds) }
-	}
-	
-	
+	var audioFile: AudioFile!
 	
 	@IBAction func algorithmPopUpSelected(_ sender: NSPopUpButton) {
 		let lastSelectedIndex = sender.indexOfSelectedItem
@@ -52,7 +47,7 @@ class ViewController: NSViewController {
 				do {
 					let audioFile = try AVAudioFile(forReading: filePath)
 					let piecesSplit = try audioFile.splitIntoPieces(count: self.pieceCount)
-					self.pieces = piecesSplit.enumerated().map { $0 }
+					self.audioFile.pieces = piecesSplit.enumerated().map { MusicalAudioBuffer(with: $0.element, at: $0.offset, color: nil) }
 					graphView.draw(graphView.frame)
 				} catch {
 					self.statusLabel.stringValue = "Status - Shuffling Failed"
@@ -72,7 +67,7 @@ class ViewController: NSViewController {
 			if audioPlayer.isPlaying {
 				audioPlayer.stop()
 			}
-			try playFile(with: audioPlayer, pieces: pieces)
+			try playFile(with: audioPlayer, pieces: audioFile.pieces)
 			self.statusLabel.stringValue = "Status - Played"
 		} catch {
 			self.statusLabel.stringValue = "Status - Playing Failed, try again"
@@ -81,7 +76,7 @@ class ViewController: NSViewController {
 	}
 	
 	@IBAction func shufflePrompt(_ sender: Any) {
-		pieces.shuffle()
+		audioFile.pieces.shuffle()
 		graphView.draw(graphView.frame)
 		algorithmPopUpButton.isEnabled = true
 	}
@@ -97,10 +92,10 @@ class ViewController: NSViewController {
 		
 		switch selectedAlgorithm {
 		case "Bubble Sort":
-			sorter = BubbleSort(sorting: pieces)
+			sorter = BubbleSort(sorting: audioFile)
 			
 		case "Selection Sort":
-			sorter = SelectionSort(sorting: pieces)
+			sorter = SelectionSort(sorting: audioFile)
 			
 		default:
 			break;
@@ -110,8 +105,7 @@ class ViewController: NSViewController {
 		let _ = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true) { timer in
 			sorter!.step()
 			self.graphView.needsDisplay = true
-			self.pieces = sorter!.array
-			self.colors = sorter!.colors
+			
 			if sorter!.isDone {
 				timer.invalidate()
 				self.pieceCountField.isEnabled = true
@@ -134,7 +128,7 @@ class ViewController: NSViewController {
 				self.filePath = fileSelectionPanel.urls[0]
 				let audioFile = try AVAudioFile(forReading: self.filePath)
 				let piecesSplit = try audioFile.splitIntoPieces(count: self.defaultPieceCount)
-				self.pieces = piecesSplit.enumerated().map { $0 }
+				self.audioFile.pieces = piecesSplit.enumerated().map { MusicalAudioBuffer(with: $0.element, at: $0.offset, color: nil) }
 				self.pieceCountField.stringValue = String(self.defaultPieceCount)
 				self.playButton.isEnabled = true
 				self.pieceCountField.isEnabled = true
@@ -155,6 +149,7 @@ class ViewController: NSViewController {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		self.graphView.viewController = self
+		self.audioFile = AudioFile(in: self)
 		prepareForUploading()
 	}
 	

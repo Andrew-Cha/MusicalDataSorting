@@ -8,9 +8,9 @@
 
 import AVFoundation
 
-func playFile(with audioPlayerNode: AVAudioPlayerNode, pieces: [IndexAndBuffer]) throws {
-	for (_, audioPiece) in pieces {
-			audioPlayerNode.scheduleBuffer(audioPiece)
+func playFile(with audioPlayerNode: AVAudioPlayerNode, pieces: [MusicalAudioBuffer]) throws {
+	for audioFragment in pieces {
+			audioPlayerNode.scheduleBuffer(audioFragment.buffer)
 		}
 		
 		audioPlayerNode.play()

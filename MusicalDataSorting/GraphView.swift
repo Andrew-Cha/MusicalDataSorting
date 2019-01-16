@@ -19,8 +19,7 @@ class GraphView: NSView {
 	}
 	
 	override func draw(_ dirtyRect: NSRect) {
-		guard let pieces = viewController?.pieces else { return }
-		let colors = viewController?.colors
+		guard let pieces = viewController?.audioFile.pieces else { return }
 		
 		super.draw(dirtyRect)
 		let context = NSGraphicsContext.current?.cgContext
@@ -29,25 +28,28 @@ class GraphView: NSView {
 		let width = frame.width / pieceCount
 		var x: CGFloat = 0
 		
-		for (index, _) in pieces {
-			let coefficient = CGFloat(index + 1) / pieceCount
+		for (index, audioFragment) in viewController.audioFile.pieces.enumerated() {
+			let coefficient = CGFloat(audioFragment.index + 1) / pieceCount
 			let height = coefficient * frame.height
 			let rect = NSRect(x: x, y: 0, width: width, height: height)
 			
-			if let comparingFrom = colors?.comparingFrom {
-				if comparingFrom.contains(index) {
+			if let color = audioFragment.color {
+				if color == NSColor.red {
 					NSColor.red.setFill()
-				}
-			}
-			
-			if let comparingTo = colors?.comparingTo {
-				if comparingTo.contains(index) {
+					print("Color red")
+				} else if color == NSColor.green {
 					NSColor.green.setFill()
+					print("Color green")
 				}
+				context?.fill(rect)
+				NSColor.black.setFill()
+				
+				viewController.audioFile.pieces[index].color = nil
+			} else {
+				print("Color black")
+				context?.fill(rect)
 			}
-			context?.fill(rect)
 			
-			NSColor.black.setFill()
 			x += width
 		}
 	}

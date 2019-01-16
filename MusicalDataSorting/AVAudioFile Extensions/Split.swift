@@ -6,7 +6,6 @@
 //  Copyright © 2018 Andrew. All rights reserved.
 //
 
-typealias IndexAndBuffer = (index: Int, buffer: AVAudioPCMBuffer)
 import AVFoundation
 
 extension AVAudioFile {

@@ -6,44 +6,40 @@
 //  Copyright © 2018 Andrew. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 final class SelectionSort: SortingAlgorithm {
-	var array: [IndexAndBuffer]
-	var colors: PieceColors
+	var audioFile: AudioFile
 	
 	var i = 0
 	var minIndex = 0
 	var j = 1
 	var isDone = false
 	
-	init(sorting array: [IndexAndBuffer]) {
-		self.array = array
-		self.colors = PieceColors()
+	init(sorting audioFile: AudioFile) {
+		self.audioFile = audioFile
 	}
 	
 	func step() {
 		assert(!isDone)
 		
-		colors.comparingTo = []
-		colors.comparingFrom = []
-		
-		if array[j].index < array[minIndex].index {
-			colors.comparingFrom = [array[j].index, array[minIndex].index]
+		if audioFile.pieces[j].index < audioFile.pieces[minIndex].index {
+			audioFile.pieces[j].color = NSColor.red
+			audioFile.pieces[minIndex].color = NSColor.red
 			minIndex = j
 		} else {
-			colors.comparingTo = [array[j].index]
+			audioFile.pieces[j].color = NSColor.green
 		}
 		
-		if j >= array.count - 1 {
-			array.swapAt(i, minIndex)
+		if j >= audioFile.pieces.count - 1 {
+			audioFile.pieces.swapAt(i, minIndex)
 			i += 1
 			minIndex = i
 			j = i + 1
 			
-			if j == array.count {
+			if j == audioFile.pieces.count {
 				isDone = true
-				colors = PieceColors()
+				audioFile.pieces[j - 1].color = nil
 			}
 		} else {
 			j += 1

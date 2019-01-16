@@ -9,8 +9,7 @@
 import Foundation
 
 protocol SortingAlgorithm {
-	var array: [IndexAndBuffer] { get set }
-	var colors: PieceColors { get set }
+	var audioFile: AudioFile { get set }
 	var isDone: Bool { get set }
 	func step()
 }
