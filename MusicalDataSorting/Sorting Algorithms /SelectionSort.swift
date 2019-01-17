@@ -39,7 +39,8 @@ final class SelectionSort: SortingAlgorithm {
 			
 			if j == audioFile.pieces.count {
 				isDone = true
-				audioFile.pieces[j - 1].color = nil
+				audioFile.pieces[i].color = nil
+				audioFile.pieces[i - 1].color = nil
 			}
 		} else {
 			j += 1

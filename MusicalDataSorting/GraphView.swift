@@ -12,9 +12,9 @@ class GraphView: NSView {
 	var viewController: ViewController!
 	
 	override func awakeFromNib() {
-		self.wantsLayer = true
-		self.layer!.backgroundColor = NSColor.gray.cgColor
-		self.layer!.cornerRadius = 10
+		wantsLayer = true
+		layer!.backgroundColor = NSColor.gray.cgColor
+		layer!.cornerRadius = 10
 		super.awakeFromNib()
 	}
 	
@@ -35,13 +35,13 @@ class GraphView: NSView {
 			
 			if let color = audioFragment.color {
 				if color == NSColor.red {
-					NSColor.red.setFill()
+					context?.setFillColor(CGColor.init(red: 255, green: 0, blue: 0, alpha: 255))
 				} else if color == NSColor.green {
-					NSColor.green.setFill()
+					context?.setFillColor(CGColor.init(red: 0, green: 255, blue: 0, alpha: 255))
 				}
 				context?.fill(rect)
-				NSColor.black.setFill()
-				
+				context?.setFillColor(CGColor.black)
+		
 				viewController.audioFile.pieces[index].color = nil
 			} else {
 				context?.fill(rect)

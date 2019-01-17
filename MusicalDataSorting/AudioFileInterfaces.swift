@@ -26,9 +26,8 @@ struct MusicalAudioBuffer {
 	var index: Int
 	var color: NSColor?
 	
-	init(with buffer: AVAudioPCMBuffer, at index: Int, color: NSColor?) {
+	init(with buffer: AVAudioPCMBuffer, at index: Int) {
 		self.buffer = buffer
 		self.index = index
-		self.color = color
 	}
 }

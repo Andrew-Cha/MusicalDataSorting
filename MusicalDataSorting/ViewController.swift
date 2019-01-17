@@ -2,7 +2,7 @@ import Cocoa
 import AVFoundation
 
 class ViewController: NSViewController {
-	let algorithmNames = ["Pick an Algorithm", "Bubble Sort", "Selection Sort"]
+	let algorithmNames = ["Pick an Algorithm", "Bubble Sort", "Insertion Sort", "Selection Sort"]
 	@IBOutlet weak var graphView: GraphView!
 	
 	@IBOutlet weak var algorithmPopUpButton: NSPopUpButton!
@@ -22,7 +22,9 @@ class ViewController: NSViewController {
 	let minimumPieceCount = 10
 	let maximumPieceCount = 25000
 	let defaultPieceCount = 10
-	var pieceCount = 0
+	var pieceCount = 0 {
+		didSet { pieceCountField.stringValue = String(pieceCount) }
+	}
 	
 	var audioFile: AudioFile!
 	
@@ -35,43 +37,36 @@ class ViewController: NSViewController {
 	}
 	
 	@IBAction func pieceCountEntered(_ sender: NSTextField) {
-		var invalidInput = true
-		
-		if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: sender.stringValue)) {
-			let numbers = Int(sender.stringValue)!
-			if minimumPieceCount <= numbers && numbers <= maximumPieceCount {
-				invalidInput = false
-				
-				pieceCountField.stringValue = String(numbers)
-				pieceCount = numbers
-				do {
-					let audioFile = try AVAudioFile(forReading: filePath)
-					let piecesSplit = try audioFile.splitIntoPieces(count: self.pieceCount)
-					self.audioFile.pieces = piecesSplit.enumerated().map { MusicalAudioBuffer(with: $0.element, at: $0.offset, color: nil) }
-					graphView.draw(graphView.frame)
-				} catch {
-					self.statusLabel.stringValue = "Status - Shuffling Failed"
-					self.showAlert(for: error)
-				}
-			}
+		guard let uncheckedCount = Int(sender.stringValue) else {
+			pieceCountField.stringValue = String(defaultPieceCount)
+			return
 		}
 		
-		if invalidInput {
-			pieceCountField.stringValue = String(defaultPieceCount)
+		let count = min(maximumPieceCount, max(minimumPieceCount, uncheckedCount))
+		pieceCount = count
+		
+		do {
+			let audioFile = try AVAudioFile(forReading: filePath)
+			let piecesSplit = try audioFile.splitIntoPieces(count: pieceCount)
+			self.audioFile.pieces = piecesSplit.enumerated().map { MusicalAudioBuffer(with: $0.element, at: $0.offset) }
+			graphView.draw(graphView.frame)
+		} catch {
+			statusLabel.stringValue = "Status - Shuffling Failed"
+			showAlert(for: error)
 		}
 	}
 	
 	@IBAction func playFilePrompt(_ sender: Any) {
 		do {
-			self.graphView.draw(self.graphView.frame)
+			graphView.draw(graphView.frame)
 			if audioPlayer.isPlaying {
 				audioPlayer.stop()
 			}
 			try playFile(with: audioPlayer, pieces: audioFile.pieces)
-			self.statusLabel.stringValue = "Status - Played"
+			statusLabel.stringValue = "Status - Played"
 		} catch {
-			self.statusLabel.stringValue = "Status - Playing Failed, try again"
-			self.showAlert(for: error)
+			statusLabel.stringValue = "Status - Playing Failed, try again"
+			showAlert(for: error)
 		}
 	}
 	
@@ -93,6 +88,9 @@ class ViewController: NSViewController {
 		switch selectedAlgorithm {
 		case "Bubble Sort":
 			sorter = BubbleSort(sorting: audioFile)
+			
+		case "Insertion Sort":
+			sorter = InsertionSort(sorting: audioFile)
 			
 		case "Selection Sort":
 			sorter = SelectionSort(sorting: audioFile)
@@ -128,7 +126,7 @@ class ViewController: NSViewController {
 				self.filePath = fileSelectionPanel.urls[0]
 				let audioFile = try AVAudioFile(forReading: self.filePath)
 				let piecesSplit = try audioFile.splitIntoPieces(count: self.defaultPieceCount)
-				self.audioFile.pieces = piecesSplit.enumerated().map { MusicalAudioBuffer(with: $0.element, at: $0.offset, color: nil) }
+				self.audioFile.pieces = piecesSplit.enumerated().map { MusicalAudioBuffer(with: $0.element, at: $0.offset) }
 				self.pieceCountField.stringValue = String(self.defaultPieceCount)
 				self.playButton.isEnabled = true
 				self.pieceCountField.isEnabled = true
