@@ -38,6 +38,7 @@ final class InsertionSort: SortingAlgorithm {
 			if i == audioFile.pieces.count {
 				isDone = true
 				audioFile.pieces[0].color = nil
+				audioFile.pieces[1].color = nil
 			}
 		}
 	}

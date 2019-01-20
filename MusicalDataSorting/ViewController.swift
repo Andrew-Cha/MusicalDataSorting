@@ -2,7 +2,7 @@ import Cocoa
 import AVFoundation
 
 class ViewController: NSViewController {
-	let algorithmNames = ["Pick an Algorithm", "Bubble Sort", "Insertion Sort", "Selection Sort"]
+	let algorithmNames = ["Pick an Algorithm", "Bubble Sort", "Merge Sort", "Insertion Sort", "Selection Sort"]
 	@IBOutlet weak var graphView: GraphView!
 	
 	@IBOutlet weak var algorithmPopUpButton: NSPopUpButton!
@@ -88,6 +88,9 @@ class ViewController: NSViewController {
 		switch selectedAlgorithm {
 		case "Bubble Sort":
 			sorter = BubbleSort(sorting: audioFile)
+		
+		case "Merge Sort":
+			sorter = MergeSort(sorting: audioFile)
 			
 		case "Insertion Sort":
 			sorter = InsertionSort(sorting: audioFile)
@@ -100,7 +103,7 @@ class ViewController: NSViewController {
 		}
 		
 		guard sorter != nil else { return }
-		let _ = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true) { timer in
+		let _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
 			sorter!.step()
 			self.graphView.needsDisplay = true
 			
