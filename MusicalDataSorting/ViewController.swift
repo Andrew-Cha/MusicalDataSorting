@@ -19,9 +19,9 @@ class ViewController: NSViewController {
 	
 	var filePath: URL!
 	var selectedAlgorithm: String!
-	let minimumPieceCount = 10
+	let minimumPieceCount = 8
 	let maximumPieceCount = 25000
-	let defaultPieceCount = 10
+	let defaultPieceCount = 8
 	var pieceCount = 0 {
 		didSet { pieceCountField.stringValue = String(pieceCount) }
 	}
@@ -103,7 +103,7 @@ class ViewController: NSViewController {
 		}
 		
 		guard sorter != nil else { return }
-		let _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
+		let _ = Timer.scheduledTimer(withTimeInterval: 0.004, repeats: true) { timer in
 			sorter!.step()
 			self.graphView.needsDisplay = true
 			

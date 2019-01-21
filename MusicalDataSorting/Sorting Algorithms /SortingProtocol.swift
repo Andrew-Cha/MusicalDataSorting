@@ -13,3 +13,7 @@ protocol SortingAlgorithm {
 	var isDone: Bool { get set }
 	func step()
 }
+
+extension SortingAlgorithm {
+	
+}
