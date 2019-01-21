@@ -72,7 +72,7 @@ final class MergeSort: SortingAlgorithm {
 				
 				/// If we had jumped the pair last iteration
 				if jumpedPair {
-					currentColor = NSColor.random
+					currentColor = .random
 					currentOffset = offset
 					leftIndex = offset
 					rightIndex = offset + width
@@ -131,9 +131,6 @@ final class MergeSort: SortingAlgorithm {
 
 extension NSColor {
 	 static var random: NSColor {
-		let red = CGFloat.random(in: 0...255)
-		let green = CGFloat.random(in: 0...255)
-		let blue = CGFloat.random(in: 0...255)
-		return NSColor.init(red: red, green: green, blue: blue, alpha: 1.0)
+		return NSColor(red: .random(in: 0...1.0), green: .random(in: 0...1.0), blue: .random(in: 0...1.0), alpha: 1.0)
 	}
 }
