@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		492D938A21F62392006AEE6B /* MiscHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492D938921F62392006AEE6B /* MiscHelpers.swift */; };
+		492D938E21F62D38006AEE6B /* Todo List in Resources */ = {isa = PBXBuildFile; fileRef = 492D938D21F62D38006AEE6B /* Todo List */; };
 		4931E8DC21A69159006A7B55 /* SelectionSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931E8DB21A69159006A7B55 /* SelectionSort.swift */; };
 		4931E8DE21A6B8D7006A7B55 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931E8DD21A6B8D7006A7B55 /* Timer.swift */; };
 		4931E8E021A75518006A7B55 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931E8DF21A75518006A7B55 /* GraphView.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		492D938921F62392006AEE6B /* MiscHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscHelpers.swift; sourceTree = "<group>"; };
+		492D938D21F62D38006AEE6B /* Todo List */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Todo List"; sourceTree = "<group>"; };
 		4931E8DB21A69159006A7B55 /* SelectionSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSort.swift; sourceTree = "<group>"; };
 		4931E8DD21A6B8D7006A7B55 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		4931E8DF21A75518006A7B55 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
@@ -59,9 +61,22 @@
 		492D938821F62369006AEE6B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				493AC2A821EFDB9C002ADC71 /* AudioFileInterfaces.swift */,
 				492D938921F62392006AEE6B /* MiscHelpers.swift */,
+				4931E8DD21A6B8D7006A7B55 /* Timer.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		492D938F21F62D79006AEE6B /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				49BF48B22189CD76000DF9FB /* Info.plist */,
+				49BF48AD2189CD76000DF9FB /* Assets.xcassets */,
+				49BF48A92189CD74000DF9FB /* AppDelegate.swift */,
+				49BF48B32189CD76000DF9FB /* MusicalDataSorting.entitlements */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		49454396219D5F30005800C9 /* Sorting Algorithms  */ = {
@@ -104,18 +119,14 @@
 		49BF48A82189CD74000DF9FB /* MusicalDataSorting */ = {
 			isa = PBXGroup;
 			children = (
-				49BF48AD2189CD76000DF9FB /* Assets.xcassets */,
-				49BF48A92189CD74000DF9FB /* AppDelegate.swift */,
-				4931E8DD21A6B8D7006A7B55 /* Timer.swift */,
-				49BF48B22189CD76000DF9FB /* Info.plist */,
-				49BF48B32189CD76000DF9FB /* MusicalDataSorting.entitlements */,
 				49454399219D6908005800C9 /* AVAudioFile Extensions */,
 				492D938821F62369006AEE6B /* Helpers */,
+				492D938F21F62D79006AEE6B /* Other */,
 				49454396219D5F30005800C9 /* Sorting Algorithms  */,
-				493AC2A821EFDB9C002ADC71 /* AudioFileInterfaces.swift */,
 				4931E8DF21A75518006A7B55 /* GraphView.swift */,
 				49BF48AB2189CD74000DF9FB /* ViewController.swift */,
 				49BF48AF2189CD76000DF9FB /* Main.storyboard */,
+				492D938D21F62D38006AEE6B /* Todo List */,
 			);
 			path = MusicalDataSorting;
 			sourceTree = "<group>";
@@ -178,6 +189,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				492D938E21F62D38006AEE6B /* Todo List in Resources */,
 				49BF48AE2189CD76000DF9FB /* Assets.xcassets in Resources */,
 				49BF48B12189CD76000DF9FB /* Main.storyboard in Resources */,
 			);

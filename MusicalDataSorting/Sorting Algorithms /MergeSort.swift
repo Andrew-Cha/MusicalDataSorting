@@ -109,17 +109,17 @@ final class MergeSort: SortingAlgorithm {
 					offset += width * 2
 					jumpedPair = true
 				}
+				
 				audioFile.pieces = doubleBuffer[1 - currentDoubleBuffer]
 			} else {
-				/// If our current offset is greater than the piece count it means that
-				/// we have jumped the pairs fully, thus fully merging a *Width* width size arrays
-				
-				audioFile.pieces = doubleBuffer[1 - currentDoubleBuffer]
-				width *= 2
-				offset = 0
-				
 				/// Here we jump between the buffers we are writing to, since merge sort needs a copy of arrays we are always comparing from one and writing onto another
 				currentDoubleBuffer = 1 - currentDoubleBuffer
+				
+				/// If our current offset is greater than the piece count it means that
+				/// we have jumped the pairs fully, thus fully merging a *Width* width size arrays
+				audioFile.pieces = doubleBuffer[currentDoubleBuffer]
+				width *= 2
+				offset = 0
 			}
 		} else {
 			isDone = true
@@ -130,7 +130,7 @@ final class MergeSort: SortingAlgorithm {
 
 
 extension NSColor {
-	 static var random: NSColor {
+	static var random: NSColor {
 		return NSColor(red: .random(in: 0...1.0), green: .random(in: 0...1.0), blue: .random(in: 0...1.0), alpha: 1.0)
 	}
 }
