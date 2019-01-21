@@ -34,20 +34,17 @@ class GraphView: NSView {
 			let rect = NSRect(x: x, y: 0, width: width, height: height)
 			
 			if let color = audioFragment.color {
-				if color == NSColor.red {
-					context?.setFillColor(CGColor.init(red: 255, green: 0, blue: 0, alpha: 255))
-				} else if color == NSColor.green {
-					context?.setFillColor(CGColor.init(red: 0, green: 255, blue: 0, alpha: 255))
-				}
-				context?.fill(rect)
-				context?.setFillColor(CGColor.black)
-		
-				viewController.audioFile.pieces[index].color = nil
-			} else {
-				context?.fill(rect)
+				context?.setFillColor(color.cgColor)
 			}
+			context?.fill(rect)
+			context?.setFillColor(CGColor.black)
 			
-			x += width
+			viewController.audioFile.pieces[index].color = nil
+		} else {
+			context?.fill(rect)
 		}
+		
+		x += width
 	}
+}
 }
