@@ -1,3 +1,2 @@
 #1 Make a list for sorting algorithms
 #2 Make a swap method for sorting algorithms that also perhaps takes a color?
-#3 Fix merge sort, sometimes when it jumps widths it passes along the wrong array (!)

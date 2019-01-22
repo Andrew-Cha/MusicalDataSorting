@@ -71,6 +71,7 @@
 		492D938F21F62D79006AEE6B /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				49BF48B22189CD76000DF9FB /* Info.plist */,
 				49BF48AD2189CD76000DF9FB /* Assets.xcassets */,
 				49BF48A92189CD74000DF9FB /* AppDelegate.swift */,
 				49BF48B32189CD76000DF9FB /* MusicalDataSorting.entitlements */,
@@ -118,7 +119,6 @@
 		49BF48A82189CD74000DF9FB /* MusicalDataSorting */ = {
 			isa = PBXGroup;
 			children = (
-				49BF48B22189CD76000DF9FB /* Info.plist */,
 				49454399219D6908005800C9 /* AVAudioFile Extensions */,
 				492D938821F62369006AEE6B /* Helpers */,
 				492D938F21F62D79006AEE6B /* Other */,
@@ -351,10 +351,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = MusicalDataSorting/MusicalDataSorting.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MusicalDataSorting/Other/MusicalDataSorting.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MusicalDataSorting/Info.plist;
+				INFOPLIST_FILE = MusicalDataSorting/Other/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -369,10 +369,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = MusicalDataSorting/MusicalDataSorting.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MusicalDataSorting/Other/MusicalDataSorting.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MusicalDataSorting/Info.plist;
+				INFOPLIST_FILE = MusicalDataSorting/Other/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

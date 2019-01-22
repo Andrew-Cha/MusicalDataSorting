@@ -18,10 +18,12 @@ class ViewController: NSViewController {
 	let audioPlayer = AVAudioPlayerNode()
 	
 	var filePath: URL!
+	var isSortingPaused = false
 	var selectedAlgorithm: String!
-	let minimumPieceCount = 10
-	let maximumPieceCount = 25000
+	
 	let defaultPieceCount = 100
+	let minimumPieceCount = 8
+	let maximumPieceCount = 25000
 	var pieceCount = 0 {
 		didSet { pieceCountField.stringValue = String(pieceCount) }
 	}
@@ -56,7 +58,7 @@ class ViewController: NSViewController {
 		}
 	}
 	
-	@IBAction func playFilePrompt(_ sender: Any) {
+	@IBAction func playFilePrompt(_ sender: NSButton) {
 		do {
 			graphView.draw(graphView.frame)
 			if audioPlayer.isPlaying {
@@ -70,49 +72,61 @@ class ViewController: NSViewController {
 		}
 	}
 	
-	@IBAction func shufflePrompt(_ sender: Any) {
+	@IBAction func shufflePrompt(_ sender: NSButton) {
 		audioFile.pieces.shuffle()
 		graphView.draw(graphView.frame)
 		algorithmPopUpButton.isEnabled = true
 	}
 	
-	@IBAction func sortFilePrompt(_ sender: Any) {
-		algorithmPopUpButton.isEnabled = false
-		pieceCountField.isEnabled = false
-		shuffleButton.isEnabled = false
-		sortButton.isEnabled = false
-		uploadButton.isEnabled = false
-		
-		var sorter: SortingAlgorithm?
-		
-		switch selectedAlgorithm {
-		case "Bubble Sort":
-			sorter = BubbleSort(sorting: audioFile)
-		
-		case "Merge Sort":
-			sorter = MergeSort(sorting: audioFile)
+	@IBAction func sortFilePrompt(_ sender: NSButton) {
+		if sender.title == "Sort" {
+			algorithmPopUpButton.isEnabled = false
+			pieceCountField.isEnabled = false
+			shuffleButton.isEnabled = false
+			sortButton.title = "Pause"
+			uploadButton.isEnabled = false
 			
-		case "Insertion Sort":
-			sorter = InsertionSort(sorting: audioFile)
+			var sorter: SortingAlgorithm?
 			
-		case "Selection Sort":
-			sorter = SelectionSort(sorting: audioFile)
-			
-		default:
-			break;
-		}
-		
-		guard sorter != nil else { return }
-		let _ = Timer.scheduledTimer(withTimeInterval: 0.004, repeats: true) { timer in
-			sorter!.step()
-			self.graphView.needsDisplay = true
-			
-			if sorter!.isDone {
-				timer.invalidate()
-				self.pieceCountField.isEnabled = true
-				self.shuffleButton.isEnabled = true
-				self.uploadButton.isEnabled = true
+			switch selectedAlgorithm {
+			case "Bubble Sort":
+				sorter = BubbleSort(sorting: audioFile)
+				
+			case "Merge Sort":
+				sorter = MergeSort(sorting: audioFile)
+				
+			case "Insertion Sort":
+				sorter = InsertionSort(sorting: audioFile)
+				
+			case "Selection Sort":
+				sorter = SelectionSort(sorting: audioFile)
+				
+			default:
+				break;
 			}
+			
+			guard sorter != nil else { return }
+			let _ = Timer.scheduledTimer(withTimeInterval: 0.004, repeats: true) { timer in
+				if !self.isSortingPaused {
+					sorter!.step()
+					self.graphView.needsDisplay = true
+					
+					if sorter!.isDone {
+						timer.invalidate()
+						self.pieceCountField.isEnabled = true
+						self.sortButton.isEnabled = false
+						self.sortButton.title = "Sort"
+						self.shuffleButton.isEnabled = true
+						self.uploadButton.isEnabled = true
+					}
+				}
+			}
+		} else if sender.title == "Pause" {
+			isSortingPaused = true
+			sortButton.title = "Unpause"
+		} else if sender.title == "Unpause" {
+			isSortingPaused = false
+			sortButton.title = "Pause"
 		}
 	}
 	
