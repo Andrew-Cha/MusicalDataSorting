@@ -17,6 +17,8 @@ final class MergeSort: SortingAlgorithm {
 	var pieceCount: Int
 	var isDone = false
 	
+	var sortedFromLeft = 0
+	
 	var leftIndex = 0
 	var leftWall = 0
 	
@@ -36,8 +38,27 @@ final class MergeSort: SortingAlgorithm {
 	
 	init(sorting audioFile: AudioFile) {
 		self.audioFile = audioFile
-		self.doubleBuffer = [audioFile.pieces, audioFile.pieces]
-		self.pieceCount = audioFile.pieces.count
+		doubleBuffer = [audioFile.pieces, audioFile.pieces]
+		pieceCount = audioFile.pieces.count
+	}
+	
+	func transferData() {
+		///	Another problem we run into is that we are always using one array for sorting (comparing values from) and one for writing onto.
+		///	That means we can't really always pick one of them for drawing as it will have some elements out of date.
+		///	Instead we store how many have been updated in each side and we draw the last X (sorted right) from the last one,
+		///	while we use the first X (sortedLeft). I like to imagine that on the left side we have the current sorted array
+		///	while on the right side we have what was sorted last time, because that is how it's drawn. Perhaps a
+		///	variable name change could go a long way.
+		
+		
+		// Sorted pieces
+		for i in 0..<sortedFromLeft {
+			audioFile.pieces[i] = doubleBuffer[1 - currentDoubleBuffer][i]
+			// Unsorted pieces
+			for j in sortedFromLeft..<pieceCount {
+				audioFile.pieces[j] = doubleBuffer[currentDoubleBuffer][j]
+			}
+		}
 	}
 	
 	func step() {
@@ -110,14 +131,19 @@ final class MergeSort: SortingAlgorithm {
 					jumpedPair = true
 				}
 				
-				audioFile.pieces = doubleBuffer[1 - currentDoubleBuffer]
-			} else {
-				/// Here we jump between the buffers we are writing to, since merge sort needs a copy of arrays we are always comparing from one and writing onto another
-				currentDoubleBuffer = 1 - currentDoubleBuffer
+				if !jumpedPair {
+					sortedFromLeft += 1
+				}
 				
+				transferData()
+			} else {
+				transferData()
+				sortedFromLeft = 0
 				/// If our current offset is greater than the piece count it means that
 				/// we have jumped the pairs fully, thus fully merging a *Width* width size arrays
-				audioFile.pieces = doubleBuffer[currentDoubleBuffer]
+				
+				/// Here we jump between the buffers we are writing to, since merge sort needs a copy of arrays we are always comparing from one and writing onto another
+				currentDoubleBuffer = 1 - currentDoubleBuffer
 				width *= 2
 				offset = 0
 			}

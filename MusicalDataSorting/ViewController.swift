@@ -19,9 +19,9 @@ class ViewController: NSViewController {
 	
 	var filePath: URL!
 	var selectedAlgorithm: String!
-	let minimumPieceCount = 8
+	let minimumPieceCount = 10
 	let maximumPieceCount = 25000
-	let defaultPieceCount = 8
+	let defaultPieceCount = 100
 	var pieceCount = 0 {
 		didSet { pieceCountField.stringValue = String(pieceCount) }
 	}
