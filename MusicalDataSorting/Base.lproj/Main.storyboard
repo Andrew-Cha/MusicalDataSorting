@@ -5,10 +5,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Window Controller-->
+        <!--Main View Controller Scene-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController id="B8D-0N-5wS" userLabel="Main View Controller Scene" sceneMemberID="viewController">
                     <window key="window" title="Musical Sorting" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="514" y="381" width="1280" height="1024"/>
@@ -92,7 +92,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="OWb-gx-DMD" kind="show" id="A5D-JE-YFl"/>
+                                    <segue destination="jVb-Zu-DiT" kind="show" id="yFT-y1-rfB"/>
                                 </connections>
                             </button>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="7sw-Yl-mSp" customClass="GraphView" customModule="MusicalDataSorting" customModuleProvider="target">
@@ -212,71 +212,89 @@ IA
             </objects>
             <point key="canvasLocation" x="76" y="1268"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="lNP-iF-F7j">
-            <objects>
-                <windowController id="OWb-gx-DMD" sceneMemberID="viewController">
-                    <window key="window" title="Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Z9b-Ku-BEe">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="680" y="230" width="300" height="500"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
-                        <value key="minSize" type="size" width="300" height="500"/>
-                        <value key="maxSize" type="size" width="300" height="500"/>
-                        <value key="minFullScreenContentSize" type="size" width="300" height="500"/>
-                        <value key="maxFullScreenContentSize" type="size" width="300" height="500"/>
-                        <connections>
-                            <outlet property="delegate" destination="OWb-gx-DMD" id="Bzj-Mk-dzJ"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="jVb-Zu-DiT" kind="relationship" relationship="window.shadowedContentViewController" id="75o-t2-uDk"/>
-                    </connections>
-                </windowController>
-                <customObject id="xhu-Gc-7K3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1078" y="1274"/>
-        </scene>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="ZZJ-K0-Kta">
             <objects>
-                <viewController id="jVb-Zu-DiT" userLabel="View Controller" customClass="SettingsViewController" customModule="MusicalDataSorting" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="XV1-o7-qrh" customClass="SettingsView" customModule="MusicalDataSorting" customModuleProvider="target">
+                <viewController title="Settings" id="jVb-Zu-DiT" userLabel="Settings View Controller" customClass="SettingsViewController" customModule="MusicalDataSorting" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" identifier="SettingsView" id="XV1-o7-qrh" customClass="SettingsView" customModule="MusicalDataSorting" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-NG-q1n">
-                                <rect key="frame" x="18" y="408" width="264" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" state="on" alignment="left" minValue="0.0040000000000000001" maxValue="2" doubleValue="0.125" tickMarkPosition="above" numberOfTickMarks="6" sliderType="linear" id="MYO-HW-hRY"/>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-NG-q1n">
+                                <rect key="frame" x="18" y="409" width="264" height="24"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.0040000000000000001" maxValue="2" doubleValue="0.125" tickMarkPosition="above" numberOfTickMarks="6" sliderType="linear" id="MYO-HW-hRY"/>
+                                <connections>
+                                    <action selector="sliderMoved:" target="XV1-o7-qrh" id="W64-2d-kXs"/>
+                                </connections>
                             </slider>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q7V-VL-ooh">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q7V-VL-ooh">
                                 <rect key="frame" x="18" y="440" width="135" height="23"/>
-                                <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Current Delay: " id="2p7-9O-W9U">
                                     <font key="font" metaFont="system" size="19"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xYs-JT-QDg">
-                                <rect key="frame" x="159" y="440" width="121" height="24"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xYs-JT-QDg">
+                                <rect key="frame" x="159" y="440" width="121" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="AD0-1A-pj3">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <action selector="delayEntered:" target="XV1-o7-qrh" id="hSK-Mj-Wbi"/>
+                                </connections>
                             </textField>
+                            <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Ncj-XU-qog">
+                                <rect key="frame" x="0.0" y="378" width="300" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="pUY-80-MlH"/>
+                                </constraints>
+                            </progressIndicator>
+                            <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="n8C-11-ihy">
+                                <rect key="frame" x="0.0" y="299" width="300" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="sW3-Eq-Wa1"/>
+                                </constraints>
+                            </progressIndicator>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oq7-Hc-4Mb">
+                                <rect key="frame" x="14" y="331" width="272" height="32"/>
+                                <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jgF-a9-V4U">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system" size="17"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="t7m-NG-q1n" secondAttribute="bottom" constant="411" id="6C1-wk-b2a"/>
+                            <constraint firstItem="Ncj-XU-qog" firstAttribute="top" secondItem="t7m-NG-q1n" secondAttribute="bottom" constant="14" id="AP6-4m-d78"/>
+                            <constraint firstItem="xYs-JT-QDg" firstAttribute="leading" secondItem="q7V-VL-ooh" secondAttribute="trailing" constant="8" symbolic="YES" id="M33-vB-nPS"/>
+                            <constraint firstItem="n8C-11-ihy" firstAttribute="leading" secondItem="XV1-o7-qrh" secondAttribute="leading" id="MrX-nE-bsX"/>
+                            <constraint firstAttribute="trailing" secondItem="t7m-NG-q1n" secondAttribute="trailing" constant="20" id="PRq-V8-MoT"/>
+                            <constraint firstItem="oq7-Hc-4Mb" firstAttribute="leading" secondItem="XV1-o7-qrh" secondAttribute="leading" constant="20" id="U3k-4p-dsv"/>
+                            <constraint firstItem="n8C-11-ihy" firstAttribute="top" secondItem="oq7-Hc-4Mb" secondAttribute="bottom" constant="20" id="VGL-oM-Ahs"/>
+                            <constraint firstItem="q7V-VL-ooh" firstAttribute="leading" secondItem="XV1-o7-qrh" secondAttribute="leading" constant="20" id="fKn-LY-JPA"/>
+                            <constraint firstAttribute="trailing" secondItem="xYs-JT-QDg" secondAttribute="trailing" constant="20" symbolic="YES" id="hr8-JN-gG0"/>
+                            <constraint firstItem="oq7-Hc-4Mb" firstAttribute="top" secondItem="Ncj-XU-qog" secondAttribute="bottom" constant="20" id="ibe-PN-M2S"/>
+                            <constraint firstAttribute="trailing" secondItem="oq7-Hc-4Mb" secondAttribute="trailing" constant="20" id="maX-UA-oHy"/>
+                            <constraint firstItem="t7m-NG-q1n" firstAttribute="leading" secondItem="XV1-o7-qrh" secondAttribute="leading" constant="20" id="ooD-0L-PA8"/>
+                            <constraint firstItem="t7m-NG-q1n" firstAttribute="top" secondItem="q7V-VL-ooh" secondAttribute="bottom" constant="7" id="pjn-va-7Tt"/>
+                            <constraint firstItem="t7m-NG-q1n" firstAttribute="top" secondItem="xYs-JT-QDg" secondAttribute="bottom" constant="7" id="rI8-sI-GlX"/>
+                            <constraint firstItem="Ncj-XU-qog" firstAttribute="leading" secondItem="XV1-o7-qrh" secondAttribute="leading" id="tVA-VK-knq"/>
+                        </constraints>
+                        <accessibility identifier="Settings"/>
                         <connections>
-                            <binding destination="jVb-Zu-DiT" name="hidden" keyPath="self.settingsView" id="TjU-o3-yLt"/>
+                            <outlet property="delayField" destination="xYs-JT-QDg" id="HyY-zD-wft"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="settingsView" destination="XV1-o7-qrh" id="yw9-0c-hmL"/>
+                    </connections>
                 </viewController>
                 <customObject id="5rc-DI-UOf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1782" y="1267"/>
+            <point key="canvasLocation" x="841" y="1267"/>
         </scene>
     </scenes>
     <resources>

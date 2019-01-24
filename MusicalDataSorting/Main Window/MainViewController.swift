@@ -1,7 +1,7 @@
 import Cocoa
 import AVFoundation
 
-class MainViewController: NSViewController {
+class MainViewController: NSViewController, SettingsDelegate {
 	let sortingAlgorithms: [SortingAlgorithm.Type] = [BubbleSort.self, MergeSort.self, InsertionSort.self, SelectionSort.self]
 	
 	@IBOutlet weak var graphView: GraphView!
@@ -22,12 +22,7 @@ class MainViewController: NSViewController {
 	var isSortingPaused = false
 	var selectedAlgorithm: String!
 	
-	let defaultDelay = 0.125
-	let minimumDelay = 0.004
-	let maximumDelay = 2
-	var currentDelay = 0.125 {
-		didSet { }
-	}
+	var currentDelay = 0.125
 	
 	let defaultPieceCount = 100
 	let minimumPieceCount = 8
@@ -154,6 +149,12 @@ class MainViewController: NSViewController {
 		prepareForUploading()
 	}
 	
+	override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+		if let destination = segue.destinationController as? SettingsViewController {
+			destination.delegate = self
+		}
+	}
+	
 	func prepareForShuffling() {
 		algorithmPopUpButton.isEnabled = false
 		graphView.needsDisplay = true
@@ -199,6 +200,10 @@ class MainViewController: NSViewController {
 			statusLabel.stringValue = "Status - Failed to launch the audio engine"
 			showAlert(for: error)
 		}
+	}
+	
+	func sortingDelayChanged(to newDelay: Double) {
+		currentDelay = newDelay
 	}
 	
 	func showAlert(for error: Error) {

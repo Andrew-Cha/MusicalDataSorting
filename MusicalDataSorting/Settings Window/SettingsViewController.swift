@@ -9,8 +9,11 @@
 import Cocoa
 
 class SettingsViewController: NSViewController {
+	@IBOutlet var settingsView: SettingsView!
+	weak var delegate: SettingsDelegate?
 	
-	override func awakeFromNib() {
-		
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		settingsView.viewController = self
 	}
 }
