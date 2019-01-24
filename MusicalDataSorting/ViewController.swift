@@ -2,7 +2,8 @@ import Cocoa
 import AVFoundation
 
 class ViewController: NSViewController {
-	let algorithmNames = ["Pick an Algorithm", "Bubble Sort", "Merge Sort", "Insertion Sort", "Selection Sort"]
+	let sortingAlgorithms: [SortingAlgorithm.Type] = [BubbleSort.self, MergeSort.self, InsertionSort.self, SelectionSort.self]
+	
 	@IBOutlet weak var graphView: GraphView!
 	
 	@IBOutlet weak var algorithmPopUpButton: NSPopUpButton!
@@ -80,32 +81,18 @@ class ViewController: NSViewController {
 	
 	@IBAction func sortFilePrompt(_ sender: NSButton) {
 		if sender.title == "Sort" {
-			algorithmPopUpButton.isEnabled = false
-			pieceCountField.isEnabled = false
-			shuffleButton.isEnabled = false
-			sortButton.title = "Pause"
-			uploadButton.isEnabled = false
+			prepareForSortingStart()
 			
 			var sorter: SortingAlgorithm?
 			
-			switch selectedAlgorithm {
-			case "Bubble Sort":
-				sorter = BubbleSort(sorting: audioFile)
-				
-			case "Merge Sort":
-				sorter = MergeSort(sorting: audioFile)
-				
-			case "Insertion Sort":
-				sorter = InsertionSort(sorting: audioFile)
-				
-			case "Selection Sort":
-				sorter = SelectionSort(sorting: audioFile)
-				
-			default:
-				break;
+			for sortingAlgorithm in sortingAlgorithms {
+				if sortingAlgorithm.name == selectedAlgorithm {
+					sorter = sortingAlgorithm.init(sorting: audioFile)
+				}
 			}
 			
-			guard sorter != nil else { return }
+		
+			guard sorter != nil else { prepareForSortingEnd(); return }
 			let _ = Timer.scheduledTimer(withTimeInterval: 0.004, repeats: true) { timer in
 				if !self.isSortingPaused {
 					sorter!.step()
@@ -113,11 +100,7 @@ class ViewController: NSViewController {
 					
 					if sorter!.isDone {
 						timer.invalidate()
-						self.pieceCountField.isEnabled = true
-						self.sortButton.isEnabled = false
-						self.sortButton.title = "Sort"
-						self.shuffleButton.isEnabled = true
-						self.uploadButton.isEnabled = true
+						self.prepareForSortingEnd()
 					}
 				}
 			}
@@ -141,19 +124,15 @@ class ViewController: NSViewController {
 			
 			do {
 				self.filePath = fileSelectionPanel.urls[0]
+				
 				let audioFile = try AVAudioFile(forReading: self.filePath)
 				let piecesSplit = try audioFile.splitIntoPieces(count: self.defaultPieceCount)
+				
 				self.audioFile.pieces = piecesSplit.enumerated().map { MusicalAudioBuffer(with: $0.element, at: $0.offset) }
 				self.pieceCountField.stringValue = String(self.defaultPieceCount)
-				self.playButton.isEnabled = true
-				self.pieceCountField.isEnabled = true
-				self.shuffleButton.isEnabled = true
-				self.graphView.needsDisplay = true
-				self.sortButton.isEnabled = false
-				self.algorithmPopUpButton.isEnabled = false
-				
 				self.statusLabel.stringValue = "Status - Uploaded"
 				
+				self.prepareForShuffling()
 			} catch {
 				self.statusLabel.stringValue = "Status - Upload Failed, try again"
 				self.showAlert(for: error)
@@ -168,10 +147,38 @@ class ViewController: NSViewController {
 		prepareForUploading()
 	}
 	
+	func prepareForShuffling() {
+		algorithmPopUpButton.isEnabled = false
+		graphView.needsDisplay = true
+		pieceCountField.isEnabled = true
+		playButton.isEnabled = true
+		shuffleButton.isEnabled = true
+		sortButton.isEnabled = false
+	}
+	
+	func prepareForSortingEnd() {
+		pieceCountField.isEnabled = true
+		sortButton.isEnabled = false
+		sortButton.title = "Sort"
+		shuffleButton.isEnabled = true
+		uploadButton.isEnabled = true
+	}
+	
+	func prepareForSortingStart() {
+		algorithmPopUpButton.isEnabled = false
+		pieceCountField.isEnabled = false
+		shuffleButton.isEnabled = false
+		sortButton.title = "Pause"
+		uploadButton.isEnabled = false
+	}
+	
 	func prepareForUploading() {
 		playButton.isEnabled = false
 		algorithmPopUpButton.isEnabled = false
 		algorithmPopUpButton.removeAllItems()
+		var algorithmNames = ["Pick an Algorithm"]
+		algorithmNames.append(contentsOf: sortingAlgorithms.map({ $0.name }))
+		
 		algorithmPopUpButton.addItems(withTitles: algorithmNames)
 		sortButton.isEnabled = false
 		pieceCountField.isEnabled = false

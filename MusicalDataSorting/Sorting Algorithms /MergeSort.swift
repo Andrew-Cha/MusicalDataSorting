@@ -10,6 +10,7 @@ import Cocoa
 
 final class MergeSort: SortingAlgorithm {
 	var audioFile: AudioFile
+	static var name = "Merge Sort"
 	
 	/// 0 is our sorted array, while 1 is the one we copy from
 	var currentDoubleBuffer = 0

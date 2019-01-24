@@ -10,6 +10,7 @@ import Cocoa
 
 final class SelectionSort: SortingAlgorithm {
 	var audioFile: AudioFile
+	static var name = "Selection Sort"
 	
 	var i = 0
 	var minIndex = 0

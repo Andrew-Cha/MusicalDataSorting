@@ -10,6 +10,7 @@ import Cocoa
 
 final class BubbleSort: SortingAlgorithm {
 	var audioFile: AudioFile
+	static var name = "Bubble Sort"
 	
 	var i = 0
 	var j = 0
