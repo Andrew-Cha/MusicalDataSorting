@@ -1,7 +1,7 @@
 import Cocoa
 import AVFoundation
 
-class ViewController: NSViewController {
+class MainViewController: NSViewController {
 	let sortingAlgorithms: [SortingAlgorithm.Type] = [BubbleSort.self, MergeSort.self, InsertionSort.self, SelectionSort.self]
 	
 	@IBOutlet weak var graphView: GraphView!
@@ -21,6 +21,13 @@ class ViewController: NSViewController {
 	var filePath: URL!
 	var isSortingPaused = false
 	var selectedAlgorithm: String!
+	
+	let defaultDelay = 0.125
+	let minimumDelay = 0.004
+	let maximumDelay = 2
+	var currentDelay = 0.125 {
+		didSet { }
+	}
 	
 	let defaultPieceCount = 100
 	let minimumPieceCount = 8
@@ -93,7 +100,7 @@ class ViewController: NSViewController {
 			
 		
 			guard sorter != nil else { prepareForSortingEnd(); return }
-			let _ = Timer.scheduledTimer(withTimeInterval: 0.004, repeats: true) { timer in
+			let _ = Timer.scheduledTimer(withTimeInterval: currentDelay, repeats: true) { timer in
 				if !self.isSortingPaused {
 					sorter!.step()
 					self.graphView.needsDisplay = true

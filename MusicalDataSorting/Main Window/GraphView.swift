@@ -9,7 +9,7 @@
 import Cocoa
 
 class GraphView: NSView {
-	var viewController: ViewController!
+	var viewController: MainViewController!
 	
 	override func awakeFromNib() {
 		wantsLayer = true

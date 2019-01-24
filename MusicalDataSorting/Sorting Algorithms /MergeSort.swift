@@ -26,11 +26,12 @@ final class MergeSort: SortingAlgorithm {
 	var rightIndex = 0
 	var rightWall = 0
 	
-	var width = 1 //as our first pair is going to be of width 1
+	//as our first pair is going to be of width 1
+	var width = 1
 	
 	///	The difference between currentOffset and offset is that offset is used for determining whether we should increase the width
 	/// once it hits the pieceCount, as that means the current pairs have been fully sorted.
-	///	While currentOffset is used inside the merging of pairs to shift the current element
+	///	While currentOffset is used inside the merging of pairs to shift the current pair
 	var offset = 0
 	var currentOffset = 0
 	
@@ -46,11 +47,7 @@ final class MergeSort: SortingAlgorithm {
 	func transferData() {
 		///	Another problem we run into is that we are always using one array for sorting (comparing values from) and one for writing onto.
 		///	That means we can't really always pick one of them for drawing as it will have some elements out of date.
-		///	Instead we store how many have been updated in each side and we draw the last X (sorted right) from the last one,
-		///	while we use the first X (sortedLeft). I like to imagine that on the left side we have the current sorted array
-		///	while on the right side we have what was sorted last time, because that is how it's drawn. Perhaps a
-		///	variable name change could go a long way.
-		
+		///	Instead we store how many have been updated from the left and we draw the last X (sorted correctly) from the left
 		
 		// Sorted pieces
 		for i in 0..<sortedFromLeft {
@@ -140,6 +137,7 @@ final class MergeSort: SortingAlgorithm {
 			} else {
 				transferData()
 				sortedFromLeft = 0
+				
 				/// If our current offset is greater than the piece count it means that
 				/// we have jumped the pairs fully, thus fully merging a *Width* width size arrays
 				

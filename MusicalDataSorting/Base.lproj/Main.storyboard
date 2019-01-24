@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="MusicalDataSorting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="MainViewController" customModule="MusicalDataSorting" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="1013" height="491"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -91,6 +91,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <segue destination="OWb-gx-DMD" kind="show" id="A5D-JE-YFl"/>
+                                </connections>
                             </button>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="7sw-Yl-mSp" customClass="GraphView" customModule="MusicalDataSorting" customModuleProvider="target">
                                 <rect key="frame" x="4" y="4" width="1005" height="337"/>
@@ -207,7 +210,73 @@ IA
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="76" y="1048"/>
+            <point key="canvasLocation" x="76" y="1268"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="lNP-iF-F7j">
+            <objects>
+                <windowController id="OWb-gx-DMD" sceneMemberID="viewController">
+                    <window key="window" title="Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Z9b-Ku-BEe">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="680" y="230" width="300" height="500"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
+                        <value key="minSize" type="size" width="300" height="500"/>
+                        <value key="maxSize" type="size" width="300" height="500"/>
+                        <value key="minFullScreenContentSize" type="size" width="300" height="500"/>
+                        <value key="maxFullScreenContentSize" type="size" width="300" height="500"/>
+                        <connections>
+                            <outlet property="delegate" destination="OWb-gx-DMD" id="Bzj-Mk-dzJ"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="jVb-Zu-DiT" kind="relationship" relationship="window.shadowedContentViewController" id="75o-t2-uDk"/>
+                    </connections>
+                </windowController>
+                <customObject id="xhu-Gc-7K3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="1274"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ZZJ-K0-Kta">
+            <objects>
+                <viewController id="jVb-Zu-DiT" userLabel="View Controller" customClass="SettingsViewController" customModule="MusicalDataSorting" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="XV1-o7-qrh" customClass="SettingsView" customModule="MusicalDataSorting" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-NG-q1n">
+                                <rect key="frame" x="18" y="408" width="264" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <sliderCell key="cell" state="on" alignment="left" minValue="0.0040000000000000001" maxValue="2" doubleValue="0.125" tickMarkPosition="above" numberOfTickMarks="6" sliderType="linear" id="MYO-HW-hRY"/>
+                            </slider>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q7V-VL-ooh">
+                                <rect key="frame" x="18" y="440" width="135" height="23"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Current Delay: " id="2p7-9O-W9U">
+                                    <font key="font" metaFont="system" size="19"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xYs-JT-QDg">
+                                <rect key="frame" x="159" y="440" width="121" height="24"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="AD0-1A-pj3">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <connections>
+                            <binding destination="jVb-Zu-DiT" name="hidden" keyPath="self.settingsView" id="TjU-o3-yLt"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <customObject id="5rc-DI-UOf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1782" y="1267"/>
         </scene>
     </scenes>
     <resources>
