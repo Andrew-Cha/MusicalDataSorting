@@ -1,2 +1,4 @@
-#1 Add in time delay
-#2 Make a swap method for sorting algorithms that also perhaps takes a color?
+#1 Add a timer that takes in new time delay on fly?
+#2 More sorting algorithms
+#3 Add pausing the musical play
+#4 Implement restarting / aborting

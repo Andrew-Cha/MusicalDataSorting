@@ -17,6 +17,7 @@ class MainViewController: NSViewController, SettingsDelegate {
 	
 	@IBOutlet weak var pieceCountField: NSTextField!
 	@IBOutlet weak var statusLabel: NSTextField!
+	@IBOutlet weak var timeLabel: NSTextField!
 	
 	let audioEngine = AVAudioEngine()
 	let audioPlayer = AVAudioPlayerNode()
@@ -82,6 +83,7 @@ class MainViewController: NSViewController, SettingsDelegate {
 		audioFile.pieces.shuffle()
 		graphView.draw(graphView.frame)
 		algorithmPopUpButton.isEnabled = true
+		timeLabel.isHidden = true
 	}
 	
 	@IBAction func sortFilePrompt(_ sender: NSButton) {
@@ -93,6 +95,7 @@ class MainViewController: NSViewController, SettingsDelegate {
 				sorter = sortingAlgorithm.init(sorting: audioFile)
 			}
 			
+			let benchmarkTimer = BenchmarkTimer()
 			guard sorter != nil else { prepareForSortingEnd(); return }
 			let _ = Timer.scheduledTimer(withTimeInterval: currentDelay, repeats: true) { timer in
 				if !self.isSortingPaused {
@@ -101,6 +104,10 @@ class MainViewController: NSViewController, SettingsDelegate {
 					
 					if sorter!.isDone {
 						timer.invalidate()
+						
+						let totalTime = String(format: "%.3f",benchmarkTimer.stop())
+						self.timeLabel.stringValue = "Took \(totalTime) seconds"
+						self.timeLabel.isHidden = false
 						self.prepareForSortingEnd()
 					}
 				}
@@ -164,8 +171,8 @@ class MainViewController: NSViewController, SettingsDelegate {
 	}
 	
 	func prepareForSortingEnd() {
+		algorithmPopUpButton.isEnabled = true
 		pieceCountField.isEnabled = true
-		sortButton.isEnabled = false
 		sortButton.title = "Sort"
 		shuffleButton.isEnabled = true
 		uploadButton.isEnabled = true
@@ -176,6 +183,7 @@ class MainViewController: NSViewController, SettingsDelegate {
 		pieceCountField.isEnabled = false
 		shuffleButton.isEnabled = false
 		sortButton.title = "Pause"
+		timeLabel.isHidden = true
 		uploadButton.isEnabled = false
 	}
 	
@@ -191,6 +199,7 @@ class MainViewController: NSViewController, SettingsDelegate {
 		pieceCountField.isEnabled = false
 		shuffleButton.isEnabled = false
 		sortButton.isEnabled = false
+		timeLabel.isHidden = true
 		
 		audioEngine.attach(audioPlayer)
 		audioEngine.connect(audioPlayer, to: audioEngine.mainMixerNode, format: nil)

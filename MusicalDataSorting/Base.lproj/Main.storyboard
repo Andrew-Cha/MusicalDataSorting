@@ -97,6 +97,24 @@
                             </button>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="7sw-Yl-mSp" customClass="GraphView" customModule="MusicalDataSorting" customModuleProvider="target">
                                 <rect key="frame" x="4" y="4" width="1005" height="337"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BN4-RL-Zs2">
+                                        <rect key="frame" x="18" y="300" width="164" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="Ht3-zA-z7Y"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Took 0 minutes 0 seconds" id="9nW-yA-SgB">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="BN4-RL-Zs2" firstAttribute="top" secondItem="7sw-Yl-mSp" secondAttribute="top" constant="20" id="LyM-3B-cRy"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BN4-RL-Zs2" secondAttribute="trailing" constant="20" symbolic="YES" id="hSC-8c-uqG"/>
+                                    <constraint firstItem="BN4-RL-Zs2" firstAttribute="left" secondItem="7sw-Yl-mSp" secondAttribute="left" constant="20" id="hfE-CX-Uyc"/>
+                                </constraints>
                             </customView>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="YWT-y9-15f">
                                 <rect key="frame" x="343" y="400" width="153" height="45"/>
@@ -205,12 +223,13 @@ IA
                         <outlet property="shuffleButton" destination="F5d-Xn-idC" id="tov-n4-Pbl"/>
                         <outlet property="sortButton" destination="hWh-Kb-1Fo" id="wQp-c0-dnm"/>
                         <outlet property="statusLabel" destination="mMc-oa-ZHg" id="ef6-3X-lM3"/>
+                        <outlet property="timeLabel" destination="BN4-RL-Zs2" id="KHT-Tt-SWn"/>
                         <outlet property="uploadButton" destination="OJZ-J8-Z7g" id="nj4-1N-yhE"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="76" y="1268"/>
+            <point key="canvasLocation" x="75.5" y="1267.5"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="ZZJ-K0-Kta">
