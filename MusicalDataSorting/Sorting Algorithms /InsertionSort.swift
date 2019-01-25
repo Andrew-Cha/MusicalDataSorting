@@ -10,7 +10,6 @@ import Cocoa
 
 final class InsertionSort: SortingAlgorithm {
 	var audioFile: AudioFile
-	static var name = "Insertion Sort"
 	
 	var j = 1
 	var i = 1

@@ -5,10 +5,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller Scene-->
+        <!--Main View Controller WIndow-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" userLabel="Main View Controller Scene" sceneMemberID="viewController">
+                <windowController id="B8D-0N-5wS" userLabel="Main View Controller WIndow" sceneMemberID="viewController">
                     <window key="window" title="Musical Sorting" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="514" y="381" width="1280" height="1024"/>
@@ -46,7 +46,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="startFileUploadPrompt:" target="XfG-lQ-9wD" id="Hf2-kW-Q9v"/>
+                                    <action selector="uploadFilePrompt:" target="XfG-lQ-9wD" id="Trw-EW-WVP"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mMc-oa-ZHg">
@@ -172,15 +172,14 @@ IA
                             <constraint firstItem="7sw-Yl-mSp" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="4" id="0XN-CG-ZQq"/>
                             <constraint firstItem="7sw-Yl-mSp" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="4PE-df-puE"/>
                             <constraint firstItem="7sw-Yl-mSp" firstAttribute="top" secondItem="OJZ-J8-Z7g" secondAttribute="bottom" constant="62" id="5Fe-ag-txG"/>
-                            <constraint firstItem="5vb-9C-Aze" firstAttribute="centerX" secondItem="SBk-QB-WSN" secondAttribute="centerX" id="5Fy-yy-oIe"/>
-                            <constraint firstAttribute="trailing" secondItem="SBk-QB-WSN" secondAttribute="trailing" constant="150" id="Brz-AH-tHc"/>
+                            <constraint firstAttribute="right" secondItem="SBk-QB-WSN" secondAttribute="right" constant="150" id="Brz-AH-tHc"/>
                             <constraint firstItem="SBk-QB-WSN" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="15" id="F8c-YK-8Hf"/>
                             <constraint firstItem="7sw-Yl-mSp" firstAttribute="top" secondItem="uY1-lF-u1t" secondAttribute="bottom" constant="62" id="HuE-9H-4Pv"/>
                             <constraint firstItem="7sw-Yl-mSp" firstAttribute="top" secondItem="YWT-y9-15f" secondAttribute="bottom" constant="62" id="Jh4-JT-SrO"/>
                             <constraint firstItem="F5d-Xn-idC" firstAttribute="centerX" secondItem="uY1-lF-u1t" secondAttribute="centerX" id="M88-aj-IiB"/>
                             <constraint firstItem="mMc-oa-ZHg" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="15" id="NqX-Xa-J7U"/>
                             <constraint firstAttribute="bottom" secondItem="7sw-Yl-mSp" secondAttribute="bottom" constant="4" id="OTF-mi-fU8"/>
-                            <constraint firstItem="6sK-dj-dvh" firstAttribute="leading" secondItem="mMc-oa-ZHg" secondAttribute="trailing" constant="100" id="SLX-hW-dSy"/>
+                            <constraint firstItem="6sK-dj-dvh" firstAttribute="left" secondItem="mMc-oa-ZHg" secondAttribute="right" constant="100" id="SLX-hW-dSy"/>
                             <constraint firstItem="7sw-Yl-mSp" firstAttribute="top" secondItem="F5d-Xn-idC" secondAttribute="bottom" constant="21" id="UnO-c7-3UT"/>
                             <constraint firstItem="6sK-dj-dvh" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="15" id="VHf-yH-mo2"/>
                             <constraint firstItem="7sw-Yl-mSp" firstAttribute="top" secondItem="5vb-9C-Aze" secondAttribute="bottom" constant="62" id="VQJ-iV-FWr"/>
@@ -193,7 +192,8 @@ IA
                             <constraint firstItem="uY1-lF-u1t" firstAttribute="centerX" secondItem="iMr-WZ-xt6" secondAttribute="centerX" id="n5I-qz-VPG"/>
                             <constraint firstItem="7sw-Yl-mSp" firstAttribute="top" secondItem="c9h-oo-BQH" secondAttribute="bottom" constant="21" id="o1T-c1-qfH"/>
                             <constraint firstItem="SBk-QB-WSN" firstAttribute="leading" secondItem="iMr-WZ-xt6" secondAttribute="trailing" constant="100" id="sHD-tM-V3r"/>
-                            <constraint firstItem="mMc-oa-ZHg" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="150" id="ucE-mN-uGJ"/>
+                            <constraint firstItem="mMc-oa-ZHg" firstAttribute="left" secondItem="m2S-Jp-Qdl" secondAttribute="left" constant="150" id="ucE-mN-uGJ"/>
+                            <constraint firstItem="SBk-QB-WSN" firstAttribute="centerX" secondItem="5vb-9C-Aze" secondAttribute="centerX" id="uhb-za-s4N"/>
                             <constraint firstItem="OJZ-J8-Z7g" firstAttribute="centerX" secondItem="mMc-oa-ZHg" secondAttribute="centerX" id="vDp-Sd-neg"/>
                         </constraints>
                     </view>
@@ -215,20 +215,20 @@ IA
         <!--Settings View Controller-->
         <scene sceneID="ZZJ-K0-Kta">
             <objects>
-                <viewController title="Settings" id="jVb-Zu-DiT" userLabel="Settings View Controller" customClass="SettingsViewController" customModule="MusicalDataSorting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Settings" showSeguePresentationStyle="single" id="jVb-Zu-DiT" userLabel="Settings View Controller" customClass="SettingsViewController" customModule="MusicalDataSorting" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" identifier="SettingsView" id="XV1-o7-qrh" customClass="SettingsView" customModule="MusicalDataSorting" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="368" height="668"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-NG-q1n">
-                                <rect key="frame" x="18" y="409" width="264" height="24"/>
+                                <rect key="frame" x="18" y="577" width="332" height="24"/>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.0040000000000000001" maxValue="2" doubleValue="0.125" tickMarkPosition="above" numberOfTickMarks="6" sliderType="linear" id="MYO-HW-hRY"/>
                                 <connections>
                                     <action selector="sliderMoved:" target="XV1-o7-qrh" id="W64-2d-kXs"/>
                                 </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q7V-VL-ooh">
-                                <rect key="frame" x="18" y="440" width="135" height="23"/>
+                                <rect key="frame" x="18" y="608" width="135" height="23"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Current Delay: " id="2p7-9O-W9U">
                                     <font key="font" metaFont="system" size="19"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -236,7 +236,10 @@ IA
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xYs-JT-QDg">
-                                <rect key="frame" x="159" y="440" width="121" height="22"/>
+                                <rect key="frame" x="159" y="608" width="189" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="189" id="1b2-JJ-3WL"/>
+                                </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="AD0-1A-pj3">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -246,20 +249,11 @@ IA
                                     <action selector="delayEntered:" target="XV1-o7-qrh" id="hSK-Mj-Wbi"/>
                                 </connections>
                             </textField>
-                            <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Ncj-XU-qog">
-                                <rect key="frame" x="0.0" y="378" width="300" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="pUY-80-MlH"/>
-                                </constraints>
-                            </progressIndicator>
-                            <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="n8C-11-ihy">
-                                <rect key="frame" x="0.0" y="299" width="300" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="sW3-Eq-Wa1"/>
-                                </constraints>
+                            <progressIndicator wantsLayer="YES" maxValue="100" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Naq-dL-QJb">
+                                <rect key="frame" x="20" y="540" width="328" height="20"/>
                             </progressIndicator>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oq7-Hc-4Mb">
-                                <rect key="frame" x="14" y="331" width="272" height="32"/>
+                                <rect key="frame" x="14" y="493" width="340" height="32"/>
                                 <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jgF-a9-V4U">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system" size="17"/>
@@ -267,21 +261,21 @@ IA
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="t7m-NG-q1n" secondAttribute="bottom" constant="411" id="6C1-wk-b2a"/>
-                            <constraint firstItem="Ncj-XU-qog" firstAttribute="top" secondItem="t7m-NG-q1n" secondAttribute="bottom" constant="14" id="AP6-4m-d78"/>
-                            <constraint firstItem="xYs-JT-QDg" firstAttribute="leading" secondItem="q7V-VL-ooh" secondAttribute="trailing" constant="8" symbolic="YES" id="M33-vB-nPS"/>
-                            <constraint firstItem="n8C-11-ihy" firstAttribute="leading" secondItem="XV1-o7-qrh" secondAttribute="leading" id="MrX-nE-bsX"/>
+                            <constraint firstAttribute="trailing" secondItem="Naq-dL-QJb" secondAttribute="trailing" constant="20" id="38z-b1-mN0"/>
+                            <constraint firstAttribute="trailing" secondItem="xYs-JT-QDg" secondAttribute="trailing" constant="20" id="8kG-gC-MZh"/>
+                            <constraint firstItem="Naq-dL-QJb" firstAttribute="leading" secondItem="XV1-o7-qrh" secondAttribute="leading" constant="20" id="9Qw-cl-b4o"/>
+                            <constraint firstItem="oq7-Hc-4Mb" firstAttribute="top" secondItem="XV1-o7-qrh" secondAttribute="top" constant="147" id="A0j-Hc-G5i"/>
+                            <constraint firstItem="Naq-dL-QJb" firstAttribute="top" secondItem="t7m-NG-q1n" secondAttribute="bottom" constant="20" id="H5a-R1-qoj"/>
                             <constraint firstAttribute="trailing" secondItem="t7m-NG-q1n" secondAttribute="trailing" constant="20" id="PRq-V8-MoT"/>
                             <constraint firstItem="oq7-Hc-4Mb" firstAttribute="leading" secondItem="XV1-o7-qrh" secondAttribute="leading" constant="20" id="U3k-4p-dsv"/>
-                            <constraint firstItem="n8C-11-ihy" firstAttribute="top" secondItem="oq7-Hc-4Mb" secondAttribute="bottom" constant="20" id="VGL-oM-Ahs"/>
+                            <constraint firstAttribute="bottom" secondItem="oq7-Hc-4Mb" secondAttribute="bottom" constant="500" id="YPT-4O-dQF"/>
+                            <constraint firstItem="t7m-NG-q1n" firstAttribute="top" secondItem="xYs-JT-QDg" secondAttribute="bottom" constant="7" id="d8A-rX-OCy"/>
                             <constraint firstItem="q7V-VL-ooh" firstAttribute="leading" secondItem="XV1-o7-qrh" secondAttribute="leading" constant="20" id="fKn-LY-JPA"/>
-                            <constraint firstAttribute="trailing" secondItem="xYs-JT-QDg" secondAttribute="trailing" constant="20" symbolic="YES" id="hr8-JN-gG0"/>
-                            <constraint firstItem="oq7-Hc-4Mb" firstAttribute="top" secondItem="Ncj-XU-qog" secondAttribute="bottom" constant="20" id="ibe-PN-M2S"/>
+                            <constraint firstItem="xYs-JT-QDg" firstAttribute="top" secondItem="XV1-o7-qrh" secondAttribute="top" constant="38" id="i9F-th-Vab"/>
                             <constraint firstAttribute="trailing" secondItem="oq7-Hc-4Mb" secondAttribute="trailing" constant="20" id="maX-UA-oHy"/>
                             <constraint firstItem="t7m-NG-q1n" firstAttribute="leading" secondItem="XV1-o7-qrh" secondAttribute="leading" constant="20" id="ooD-0L-PA8"/>
                             <constraint firstItem="t7m-NG-q1n" firstAttribute="top" secondItem="q7V-VL-ooh" secondAttribute="bottom" constant="7" id="pjn-va-7Tt"/>
-                            <constraint firstItem="t7m-NG-q1n" firstAttribute="top" secondItem="xYs-JT-QDg" secondAttribute="bottom" constant="7" id="rI8-sI-GlX"/>
-                            <constraint firstItem="Ncj-XU-qog" firstAttribute="leading" secondItem="XV1-o7-qrh" secondAttribute="leading" id="tVA-VK-knq"/>
+                            <constraint firstItem="xYs-JT-QDg" firstAttribute="leading" secondItem="q7V-VL-ooh" secondAttribute="trailing" constant="8" id="ssS-tA-MIu"/>
                         </constraints>
                         <accessibility identifier="Settings"/>
                         <connections>
@@ -294,7 +288,7 @@ IA
                 </viewController>
                 <customObject id="5rc-DI-UOf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="841" y="1267"/>
+            <point key="canvasLocation" x="1215" y="1267"/>
         </scene>
     </scenes>
     <resources>

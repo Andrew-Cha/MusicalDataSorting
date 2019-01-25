@@ -16,4 +16,8 @@ class SettingsViewController: NSViewController {
 		super.viewDidLoad()
 		settingsView.viewController = self
 	}
+	
+	override func viewDidAppear() {
+		settingsView.window!.styleMask.remove(.resizable)
+	}
 }

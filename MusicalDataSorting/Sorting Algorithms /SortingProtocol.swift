@@ -11,7 +11,6 @@ import Foundation
 protocol SortingAlgorithm {
 	var audioFile: AudioFile { get set }
 	var isDone: Bool { get set }
-	static var name: String { get set }
 	
 	init(sorting audioFile: AudioFile)
 	

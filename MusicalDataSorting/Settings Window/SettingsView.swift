@@ -10,7 +10,7 @@ import Cocoa
 
 class SettingsView: NSView {
 	@IBOutlet weak var delayField: NSTextField!
-	var viewController: SettingsViewController?
+	var viewController: SettingsViewController!
 	
 	let defaultDelay = 0.125
 	let minimumDelay = 0.004
@@ -18,7 +18,7 @@ class SettingsView: NSView {
 	var currentDelay = 0.125 {
 		didSet {
 			delayField.stringValue = String(format: "%.3f", currentDelay)
-			viewController!.delegate?.sortingDelayChanged(to: currentDelay)
+			viewController.delegate?.sortingDelayChanged(to: currentDelay)
 		}
 	}
 	

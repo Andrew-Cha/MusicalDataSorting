@@ -2,7 +2,10 @@ import Cocoa
 import AVFoundation
 
 class MainViewController: NSViewController, SettingsDelegate {
-	let sortingAlgorithms: [SortingAlgorithm.Type] = [BubbleSort.self, MergeSort.self, InsertionSort.self, SelectionSort.self]
+	let sortingAlgorithms: [String: SortingAlgorithm.Type] = ["Bubble Sort": BubbleSort.self,
+															  "Merge Sort": MergeSort.self,
+															  "Insertion Sort": InsertionSort.self,
+															  "Selection Sort": SelectionSort.self]
 	
 	@IBOutlet weak var graphView: GraphView!
 	
@@ -86,14 +89,10 @@ class MainViewController: NSViewController, SettingsDelegate {
 			prepareForSortingStart()
 			
 			var sorter: SortingAlgorithm?
-			
-			for sortingAlgorithm in sortingAlgorithms {
-				if sortingAlgorithm.name == selectedAlgorithm {
-					sorter = sortingAlgorithm.init(sorting: audioFile)
-				}
+			if let sortingAlgorithm = sortingAlgorithms[selectedAlgorithm] {
+				sorter = sortingAlgorithm.init(sorting: audioFile)
 			}
 			
-		
 			guard sorter != nil else { prepareForSortingEnd(); return }
 			let _ = Timer.scheduledTimer(withTimeInterval: currentDelay, repeats: true) { timer in
 				if !self.isSortingPaused {
@@ -115,7 +114,7 @@ class MainViewController: NSViewController, SettingsDelegate {
 		}
 	}
 	
-	@IBAction func startFileUploadPrompt(_ sender: NSButton) {
+	@IBAction func uploadFilePrompt(_ sender: NSButton) {
 		let fileSelectionPanel = NSOpenPanel()
 		fileSelectionPanel.canChooseFiles = true
 		fileSelectionPanel.allowsMultipleSelection = false
@@ -181,16 +180,17 @@ class MainViewController: NSViewController, SettingsDelegate {
 	}
 	
 	func prepareForUploading() {
-		playButton.isEnabled = false
 		algorithmPopUpButton.isEnabled = false
 		algorithmPopUpButton.removeAllItems()
-		var algorithmNames = ["Pick an Algorithm"]
-		algorithmNames.append(contentsOf: sortingAlgorithms.map({ $0.name }))
-		
+		var algorithmNames: [String] = []
+		algorithmNames.append(contentsOf: sortingAlgorithms.keys.map({ $0 }).sorted())
+		algorithmNames.insert("Pick An Algorithm", at: 0)
 		algorithmPopUpButton.addItems(withTitles: algorithmNames)
-		sortButton.isEnabled = false
+		
+		playButton.isEnabled = false
 		pieceCountField.isEnabled = false
 		shuffleButton.isEnabled = false
+		sortButton.isEnabled = false
 		
 		audioEngine.attach(audioPlayer)
 		audioEngine.connect(audioPlayer, to: audioEngine.mainMixerNode, format: nil)
@@ -220,9 +220,4 @@ class MainViewController: NSViewController, SettingsDelegate {
 		let newError = NSError(domain: "" , code: 0, userInfo: [NSLocalizedDescriptionKey: description])
 		NSAlert(error: newError).runModal()
 	}
-}
-
-struct PieceColors {
-	var comparingTo: [Int] = []
-	var comparingFrom: [Int] = []
 }
