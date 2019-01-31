@@ -13,7 +13,7 @@ class SettingsView: NSView {
 	var viewController: SettingsViewController!
 	
 	let defaultDelay = 0.125
-	let minimumDelay = 0.004
+	let minimumDelay = 0.001
 	let maximumDelay = 2.0
 	var currentDelay = 0.125 {
 		didSet {

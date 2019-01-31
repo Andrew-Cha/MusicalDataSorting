@@ -2,10 +2,11 @@ import Cocoa
 import AVFoundation
 
 class MainViewController: NSViewController, SettingsDelegate {
-	let sortingAlgorithms: [String: SortingAlgorithm.Type] = ["Bubble Sort": BubbleSort.self,
-															  "Merge Sort": MergeSort.self,
-															  "Insertion Sort": InsertionSort.self,
-															  "Selection Sort": SelectionSort.self]
+	let sortingAlgorithms: [String: SortingAlgorithm.Type] =
+		["Bubble Sort": BubbleSort.self,
+		 "Merge Sort": MergeSort.self,
+		 "Insertion Sort": InsertionSort.self,
+		 "Selection Sort": SelectionSort.self]
 	
 	@IBOutlet weak var graphView: GraphView!
 	
@@ -23,8 +24,13 @@ class MainViewController: NSViewController, SettingsDelegate {
 	let audioPlayer = AVAudioPlayerNode()
 	
 	var filePath: URL!
+	var isSorting = false
 	var isSortingPaused = false
 	var selectedAlgorithm: String!
+	
+	var redrawFrameCounter = 0
+	var redrawFrameDelay = 0
+	var totalStepCount = 0
 	
 	var currentDelay = 0.125
 	
@@ -34,6 +40,11 @@ class MainViewController: NSViewController, SettingsDelegate {
 	var pieceCount = 0 {
 		didSet { pieceCountField.stringValue = String(pieceCount) }
 	}
+	
+	let readyToSortTitle = "Sort"
+	let readyToPauseTitle = "Pause"
+	let readyToUnpauseTitle = "Unpause"
+	
 	
 	var audioFile: AudioFile!
 	
@@ -58,7 +69,7 @@ class MainViewController: NSViewController, SettingsDelegate {
 			let audioFile = try AVAudioFile(forReading: filePath)
 			let piecesSplit = try audioFile.splitIntoPieces(count: pieceCount)
 			self.audioFile.pieces = piecesSplit.enumerated().map { MusicalAudioBuffer(with: $0.element, at: $0.offset) }
-			graphView.draw(graphView.frame)
+			graphView.needsDisplay = true
 		} catch {
 			statusLabel.stringValue = "Status - Shuffling Failed"
 			showAlert(for: error)
@@ -79,45 +90,58 @@ class MainViewController: NSViewController, SettingsDelegate {
 		}
 	}
 	
-	@IBAction func shufflePrompt(_ sender: NSButton) {
+	@IBAction func shuffleFilePrompt(_ sender: NSButton) {
 		audioFile.pieces.shuffle()
-		graphView.draw(graphView.frame)
+		graphView.needsDisplay = true
 		algorithmPopUpButton.isEnabled = true
 		timeLabel.isHidden = true
 	}
 	
 	@IBAction func sortFilePrompt(_ sender: NSButton) {
-		if sender.title == "Sort" {
-			prepareForSortingStart()
-			
-			var sorter: SortingAlgorithm?
-			if let sortingAlgorithm = sortingAlgorithms[selectedAlgorithm] {
-				sorter = sortingAlgorithm.init(sorting: audioFile)
+		guard !isSorting else {
+			if isSortingPaused {
+				sender.title = readyToPauseTitle
+				isSortingPaused = false
+			} else {
+				sender.title = readyToUnpauseTitle
+				isSortingPaused = true
 			}
-			
-			let benchmarkTimer = BenchmarkTimer()
-			guard sorter != nil else { prepareForSortingEnd(); return }
-			let _ = Timer.scheduledTimer(withTimeInterval: currentDelay, repeats: true) { timer in
-				if !self.isSortingPaused {
-					sorter!.step()
+			return
+		}
+		
+		guard let sortingAlgorithm = sortingAlgorithms[selectedAlgorithm] else {
+			prepareForSortingEnd()
+			return
+		}
+		
+		isSorting = true
+		prepareForSortingStart()
+		
+		let sorter = sortingAlgorithm.init(sorting: audioFile)
+		let benchmarkTimer = BenchmarkTimer()
+		
+		let _ = Timer.scheduledTimer(withTimeInterval: currentDelay, repeats: true) { timer in
+			if !self.isSortingPaused {
+				sorter.step()
+				
+				if self.redrawFrameCounter >= self.redrawFrameDelay {
 					self.graphView.needsDisplay = true
+					self.redrawFrameCounter = 0
+				}
+				
+				self.totalStepCount += 1
+				self.redrawFrameCounter += 1
+				
+				if sorter.isDone {
+					timer.invalidate()
 					
-					if sorter!.isDone {
-						timer.invalidate()
-						
-						let totalTime = String(format: "%.3f",benchmarkTimer.stop())
-						self.timeLabel.stringValue = "Took \(totalTime) seconds"
-						self.timeLabel.isHidden = false
-						self.prepareForSortingEnd()
-					}
+					let totalTime = String(format: "%.3f",benchmarkTimer.stop())
+					self.timeLabel.stringValue = "Took \(totalTime) seconds and \(self.totalStepCount) steps."
+					self.timeLabel.isHidden = false
+					self.isSorting = false
+					self.prepareForSortingEnd()
 				}
 			}
-		} else if sender.title == "Pause" {
-			isSortingPaused = true
-			sortButton.title = "Unpause"
-		} else if sender.title == "Unpause" {
-			isSortingPaused = false
-			sortButton.title = "Pause"
 		}
 	}
 	
@@ -140,10 +164,11 @@ class MainViewController: NSViewController, SettingsDelegate {
 				self.pieceCountField.stringValue = String(self.defaultPieceCount)
 				self.statusLabel.stringValue = "Status - Uploaded"
 				
+				self.graphView.needsDisplay = true
 				self.prepareForShuffling()
 			} catch {
 				self.statusLabel.stringValue = "Status - Upload Failed, try again"
-				self.showAlert(for: error)
+				showAlert(for: error)
 			}
 		}
 	}
@@ -173,7 +198,7 @@ class MainViewController: NSViewController, SettingsDelegate {
 	func prepareForSortingEnd() {
 		algorithmPopUpButton.isEnabled = true
 		pieceCountField.isEnabled = true
-		sortButton.title = "Sort"
+		sortButton.title = readyToSortTitle
 		shuffleButton.isEnabled = true
 		uploadButton.isEnabled = true
 	}
@@ -182,7 +207,7 @@ class MainViewController: NSViewController, SettingsDelegate {
 		algorithmPopUpButton.isEnabled = false
 		pieceCountField.isEnabled = false
 		shuffleButton.isEnabled = false
-		sortButton.title = "Pause"
+		sortButton.title = readyToPauseTitle
 		timeLabel.isHidden = true
 		uploadButton.isEnabled = false
 	}
@@ -213,20 +238,5 @@ class MainViewController: NSViewController, SettingsDelegate {
 	
 	func sortingDelayChanged(to newDelay: Double) {
 		currentDelay = newDelay
-	}
-	
-	func showAlert(for error: Error) {
-		print(error.localizedDescription)
-		
-		let description = """
-		Your computer is about to blow up!
-		
-		\(error.localizedDescription)
-		
-		This is most likely due to the file not being an audio file or having no data.
-		"""
-		
-		let newError = NSError(domain: "" , code: 0, userInfo: [NSLocalizedDescriptionKey: description])
-		NSAlert(error: newError).runModal()
 	}
 }

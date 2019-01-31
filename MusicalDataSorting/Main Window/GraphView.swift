@@ -28,7 +28,7 @@ class GraphView: NSView {
 		let width = frame.width / pieceCount
 		var x: CGFloat = 0
 		
-		for (index, audioFragment) in viewController.audioFile.pieces.enumerated() {
+		for (index, audioFragment) in pieces.enumerated() {
 			let coefficient = CGFloat(audioFragment.index + 1) / pieceCount
 			let height = coefficient * frame.height
 			let rect = NSRect(x: x, y: 0, width: width, height: height)

@@ -181,7 +181,7 @@ IA
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="shufflePrompt:" target="XfG-lQ-9wD" id="jPM-jV-uGV"/>
+                                    <action selector="shuffleFilePrompt:" target="XfG-lQ-9wD" id="dCJ-2K-am0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -241,7 +241,7 @@ IA
                         <subviews>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-NG-q1n">
                                 <rect key="frame" x="18" y="577" width="332" height="24"/>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.0040000000000000001" maxValue="2" doubleValue="0.125" tickMarkPosition="above" numberOfTickMarks="6" sliderType="linear" id="MYO-HW-hRY"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.001" maxValue="2" doubleValue="0.125" tickMarkPosition="above" numberOfTickMarks="6" sliderType="linear" id="MYO-HW-hRY"/>
                                 <connections>
                                     <action selector="sliderMoved:" target="XV1-o7-qrh" id="W64-2d-kXs"/>
                                 </connections>

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Andrew. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 infix operator <-: NilCoalescingPrecedence
 
@@ -14,4 +14,19 @@ infix operator <-: NilCoalescingPrecedence
 	var copy = object
 	try transform(&copy)
 	return copy
+}
+
+func showAlert(for error: Error) {
+	print(error.localizedDescription)
+	
+	let description = """
+	Your computer is about to blow up!
+	
+	\(error.localizedDescription)
+	
+	This is most likely due to the file not being an audio file or having no data.
+	"""
+	
+	let newError = NSError(domain: "" , code: 0, userInfo: [NSLocalizedDescriptionKey: description])
+	NSAlert(error: newError).runModal()
 }

@@ -25,6 +25,7 @@
 		49BF48B12189CD76000DF9FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BF48AF2189CD76000DF9FB /* Main.storyboard */; };
 		49E9926D21F9C1F600C41A01 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E9926C21F9C1F600C41A01 /* SettingsView.swift */; };
 		49E9927121F9C5A600C41A01 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E9927021F9C5A600C41A01 /* SettingsViewController.swift */; };
+		49FAEB1D21FAFFED0025CEEE /* QuickSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FAEB1C21FAFFED0025CEEE /* QuickSort.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		49BF48B32189CD76000DF9FB /* MusicalDataSorting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MusicalDataSorting.entitlements; sourceTree = "<group>"; };
 		49E9926C21F9C1F600C41A01 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		49E9927021F9C5A600C41A01 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		49FAEB1C21FAFFED0025CEEE /* QuickSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickSort.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				493AC2BF21F1BDB5002ADC71 /* MergeSort.swift */,
 				493AC2AA21F06E94002ADC71 /* InsertionSort.swift */,
 				4931E8DB21A69159006A7B55 /* SelectionSort.swift */,
+				49FAEB1C21FAFFED0025CEEE /* QuickSort.swift */,
 			);
 			path = "Sorting Algorithms ";
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				493AC2AB21F06E94002ADC71 /* InsertionSort.swift in Sources */,
 				4945439F219D887D005800C9 /* BubbleSort.swift in Sources */,
 				4931E8DE21A6B8D7006A7B55 /* Timer.swift in Sources */,
+				49FAEB1D21FAFFED0025CEEE /* QuickSort.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

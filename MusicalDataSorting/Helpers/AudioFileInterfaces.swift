@@ -12,9 +12,7 @@ import AVFoundation
 class AudioFile {
 	//perhaps store the raw file here later?
 	var viewController: MainViewController
-	var pieces: [MusicalAudioBuffer]! {
-		didSet { viewController.graphView.setNeedsDisplay(viewController.graphView.bounds) }
-	}
+	var pieces: [MusicalAudioBuffer]!
 	
 	init(in viewController: MainViewController) {
 		self.viewController = viewController
