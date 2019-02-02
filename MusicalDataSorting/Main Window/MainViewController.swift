@@ -6,7 +6,8 @@ class MainViewController: NSViewController, SettingsDelegate {
 		["Bubble Sort": BubbleSort.self,
 		 "Merge Sort": MergeSort.self,
 		 "Insertion Sort": InsertionSort.self,
-		 "Selection Sort": SelectionSort.self]
+		 "Selection Sort": SelectionSort.self,
+		 "Quick Sort": QuickSort.self]
 	
 	@IBOutlet weak var graphView: GraphView!
 	
@@ -139,6 +140,7 @@ class MainViewController: NSViewController, SettingsDelegate {
 					self.timeLabel.stringValue = "Took \(totalTime) seconds and \(self.totalStepCount) steps."
 					self.timeLabel.isHidden = false
 					self.isSorting = false
+					self.totalStepCount = 0
 					self.prepareForSortingEnd()
 				}
 			}
