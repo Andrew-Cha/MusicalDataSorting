@@ -16,7 +16,3 @@ protocol SortingAlgorithm {
 	
 	func step()
 }
-
-extension SortingAlgorithm {
-	
-}

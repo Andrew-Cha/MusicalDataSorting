@@ -26,6 +26,7 @@ class MainViewController: NSViewController, SettingsDelegate {
 	
 	var filePath: URL!
 	var isSorting = false
+	var isSortingAborted = false
 	var isSortingPaused = false
 	var selectedAlgorithm: String!
 	
@@ -122,7 +123,23 @@ class MainViewController: NSViewController, SettingsDelegate {
 		let benchmarkTimer = BenchmarkTimer()
 		
 		let _ = Timer.scheduledTimer(withTimeInterval: currentDelay, repeats: true) { timer in
-			if !self.isSortingPaused {
+			if self.isSortingAborted {
+				timer.invalidate()
+				
+				self.isSorting = false
+				self.isSortingAborted = false
+				self.totalStepCount = 0
+				self.prepareForSortingEnd()
+			} else if sorter.isDone {
+				timer.invalidate()
+				
+				let totalTime = String(format: "%.3f",benchmarkTimer.stop())
+				self.timeLabel.stringValue = "Took \(totalTime) seconds and \(self.totalStepCount) steps."
+				self.timeLabel.isHidden = false
+				self.isSorting = false
+				self.totalStepCount = 0
+				self.prepareForSortingEnd()
+			} else if !self.isSortingPaused {
 				sorter.step()
 				
 				if self.redrawFrameCounter >= self.redrawFrameDelay {
@@ -133,16 +150,6 @@ class MainViewController: NSViewController, SettingsDelegate {
 				self.totalStepCount += 1
 				self.redrawFrameCounter += 1
 				
-				if sorter.isDone {
-					timer.invalidate()
-					
-					let totalTime = String(format: "%.3f",benchmarkTimer.stop())
-					self.timeLabel.stringValue = "Took \(totalTime) seconds and \(self.totalStepCount) steps."
-					self.timeLabel.isHidden = false
-					self.isSorting = false
-					self.totalStepCount = 0
-					self.prepareForSortingEnd()
-				}
 			}
 		}
 	}
@@ -236,6 +243,10 @@ class MainViewController: NSViewController, SettingsDelegate {
 			statusLabel.stringValue = "Status - Failed to launch the audio engine"
 			showAlert(for: error)
 		}
+	}
+	
+	func sortingAborted() {
+		isSortingAborted = true
 	}
 	
 	func sortingDelayChanged(to newDelay: Double) {

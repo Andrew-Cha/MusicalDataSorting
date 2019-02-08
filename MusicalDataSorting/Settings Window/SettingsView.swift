@@ -36,6 +36,11 @@ class SettingsView: NSView {
 		currentDelay = sender.doubleValue
 	}
 	
+	@IBAction func resetButtonClicked(_ sender: Any) {
+		viewController.delegate?.sortingAborted()
+	}
+	
+	
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		delayField.stringValue = String(defaultDelay)
@@ -43,5 +48,6 @@ class SettingsView: NSView {
 }
 
 protocol SettingsDelegate: AnyObject {
+	func sortingAborted()
 	func sortingDelayChanged(to newDelay: Double)
 }
