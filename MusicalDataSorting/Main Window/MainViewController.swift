@@ -67,15 +67,7 @@ class MainViewController: NSViewController, SettingsDelegate {
 		let count = min(maximumPieceCount, max(minimumPieceCount, uncheckedCount))
 		pieceCount = count
 		
-		do {
-			let audioFile = try AVAudioFile(forReading: filePath)
-			let piecesSplit = try audioFile.splitIntoPieces(count: pieceCount)
-			self.audioFile.pieces = piecesSplit.enumerated().map { MusicalAudioBuffer(with: $0.element, at: $0.offset) }
-			graphView.needsDisplay = true
-		} catch {
-			statusLabel.stringValue = "Status - Shuffling Failed"
-			showAlert(for: error)
-		}
+		splitFile(into: pieceCount, errorMessage: "Status - Shuffling Failed")
 	}
 	
 	@IBAction func playFilePrompt(_ sender: NSButton) {
@@ -163,22 +155,14 @@ class MainViewController: NSViewController, SettingsDelegate {
 		fileSelectionPanel.beginSheetModal(for: view.window!) { result in
 			guard result == .OK else { return }
 			
-			do {
-				self.filePath = fileSelectionPanel.urls[0]
-				
-				let audioFile = try AVAudioFile(forReading: self.filePath)
-				let piecesSplit = try audioFile.splitIntoPieces(count: self.defaultPieceCount)
-				
-				self.audioFile.pieces = piecesSplit.enumerated().map { MusicalAudioBuffer(with: $0.element, at: $0.offset) }
-				self.pieceCountField.stringValue = String(self.defaultPieceCount)
-				self.statusLabel.stringValue = "Status - Uploaded"
-				
-				self.graphView.needsDisplay = true
-				self.prepareForShuffling()
-			} catch {
-				self.statusLabel.stringValue = "Status - Upload Failed, try again"
-				showAlert(for: error)
-			}
+			self.filePath = fileSelectionPanel.urls[0]
+			self.pieceCountField.stringValue = String(self.defaultPieceCount)
+			
+			self.splitFile(into: self.defaultPieceCount, errorMessage: "Status - Upload Failed, try again")
+			self.statusLabel.stringValue = "Status - Uploaded"
+			
+			self.prepareForShuffling()
+			
 		}
 	}
 	
@@ -251,5 +235,17 @@ class MainViewController: NSViewController, SettingsDelegate {
 	
 	func sortingDelayChanged(to newDelay: Double) {
 		currentDelay = newDelay
+	}
+	
+	func splitFile(into pieceCount: Int, errorMessage: String) {
+		do {
+			let audioFile = try AVAudioFile(forReading: filePath)
+			let piecesSplit = try audioFile.splitIntoPieces(count: pieceCount)
+			self.audioFile.pieces = piecesSplit.enumerated().map { MusicalAudioBuffer(with: $0.element, at: $0.offset) }
+			graphView.needsDisplay = true
+		} catch {
+			statusLabel.stringValue = errorMessage
+			showAlert(for: error)
+		}
 	}
 }
