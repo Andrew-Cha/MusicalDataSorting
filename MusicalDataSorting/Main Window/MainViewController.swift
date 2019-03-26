@@ -230,7 +230,9 @@ class MainViewController: NSViewController, SettingsDelegate {
 	}
 	
 	func sortingAborted() {
-		isSortingAborted = true
+		if isSorting {
+			isSortingAborted = true
+		}
 	}
 	
 	func sortingDelayChanged(to newDelay: Double) {

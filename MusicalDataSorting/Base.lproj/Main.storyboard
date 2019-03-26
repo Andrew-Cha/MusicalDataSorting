@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -268,26 +268,20 @@ IA
                                     <action selector="delayEntered:" target="XV1-o7-qrh" id="hSK-Mj-Wbi"/>
                                 </connections>
                             </textField>
-                            <progressIndicator wantsLayer="YES" maxValue="100" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Naq-dL-QJb">
-                                <rect key="frame" x="20" y="540" width="328" height="20"/>
-                            </progressIndicator>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oq7-Hc-4Mb">
                                 <rect key="frame" x="14" y="493" width="340" height="32"/>
-                                <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jgF-a9-V4U">
+                                <buttonCell key="cell" type="push" title="Abort Sorting" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jgF-a9-V4U">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system" size="17"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="resetButtonClicked:" target="XV1-o7-qrh" id="fVH-fM-FhA"/>
+                                    <action selector="abortButtonClicked:" target="XV1-o7-qrh" id="eCK-SV-rQ3"/>
                                 </connections>
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Naq-dL-QJb" secondAttribute="trailing" constant="20" id="38z-b1-mN0"/>
                             <constraint firstAttribute="trailing" secondItem="xYs-JT-QDg" secondAttribute="trailing" constant="20" id="8kG-gC-MZh"/>
-                            <constraint firstItem="Naq-dL-QJb" firstAttribute="leading" secondItem="XV1-o7-qrh" secondAttribute="leading" constant="20" id="9Qw-cl-b4o"/>
                             <constraint firstItem="oq7-Hc-4Mb" firstAttribute="top" secondItem="XV1-o7-qrh" secondAttribute="top" constant="147" id="A0j-Hc-G5i"/>
-                            <constraint firstItem="Naq-dL-QJb" firstAttribute="top" secondItem="t7m-NG-q1n" secondAttribute="bottom" constant="20" id="H5a-R1-qoj"/>
                             <constraint firstAttribute="trailing" secondItem="t7m-NG-q1n" secondAttribute="trailing" constant="20" id="PRq-V8-MoT"/>
                             <constraint firstItem="oq7-Hc-4Mb" firstAttribute="leading" secondItem="XV1-o7-qrh" secondAttribute="leading" constant="20" id="U3k-4p-dsv"/>
                             <constraint firstAttribute="bottom" secondItem="oq7-Hc-4Mb" secondAttribute="bottom" constant="500" id="YPT-4O-dQF"/>
